@@ -1,0 +1,1997 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CleanLife - الروابط السريعة</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0bbab5;
+            --primary-dark: #099a95;
+            --primary-light: #73e0dd;
+            --secondary: #003d66;
+            --accent: #f59e0b;
+            --success: #10b981;
+            --warning: #ef4444;
+            --background: #f8fafc;
+            --surface: #ffffff;
+            --text: #003d66;
+            --text-light: #64748b;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #0bbab5 0%, #003d66 50%, #0bbab5 100%);
+            min-height: 100vh;
+            padding: 20px;
+            direction: rtl;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(11, 186, 181, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(0, 61, 102, 0.3) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .app-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Header with Glassmorphism */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 16px rgba(10, 186, 181, 0.3);
+            padding: 5px;
+        }
+
+        .logo i {
+            font-size: 40px;
+            color: white;
+        }
+
+        .header-text h1 {
+            font-size: 2em;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
+        }
+
+        .header-text p {
+            color: var(--text-light);
+            font-size: 1em;
+        }
+
+        @keyframes shine {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .celebration-img {
+            max-width: 100%;
+            height: auto;
+            max-height: 150px;
+            object-fit: contain;
+            position: relative;
+            z-index: 1;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+            transition: transform 0.3s ease;
+            will-change: transform;
+        }
+
+        .lang-btn {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 12px rgba(10, 186, 181, 0.3);
+            will-change: transform;
+        }
+
+        .lang-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(10, 186, 181, 0.4);
+        }
+
+        .lang-btn i {
+            transition: none;
+        }
+
+        /* Language Dropdown */
+        .lang-dropdown {
+            position: relative;
+            z-index: 10000;
+        }
+
+        .lang-btn {
+            position: relative;
+            z-index: 10001;
+        }
+
+        .lang-btn .dropdown-icon {
+            margin-left: 5px;
+            font-size: 0.8em;
+            transition: transform 0.3s ease;
+        }
+
+        body.ltr .lang-btn .dropdown-icon {
+            margin-left: 0;
+            margin-right: 5px;
+        }
+
+        .lang-dropdown.active .dropdown-icon {
+            transform: rotate(180deg);
+        }
+
+        .lang-btn .current-lang {
+            white-space: nowrap;
+        }
+
+        .lang-menu {
+            position: fixed;
+            top: auto;
+            right: 0;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 10002;
+            overflow: hidden;
+            border: 1px solid rgba(11, 186, 181, 0.2);
+        }
+
+        .lang-dropdown.active .lang-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .lang-option {
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 600;
+            color: var(--text);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .lang-option:last-child {
+            border-bottom: none;
+        }
+
+        .lang-option:hover {
+            background: linear-gradient(135deg, rgba(11, 186, 181, 0.1), rgba(11, 186, 181, 0.05));
+            color: var(--primary);
+        }
+
+        .lang-option.active {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+        }
+
+        .lang-option.active:hover {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: white;
+        }
+
+        .lang-flag {
+            font-size: 1.5em;
+            line-height: 1;
+        }
+
+        /* Animation for dropdown */
+        @keyframes dropdownSlide {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .lang-dropdown.active .lang-menu {
+            animation: dropdownSlide 0.3s ease;
+        }
+
+        body.ltr .lang-menu {
+            right: auto;
+            left: 0;
+        }
+
+        /* إخفاء header-bottom-row في الشاشات الكبيرة */
+        .header-bottom-row {
+            display: none;
+        }
+
+        /* إخفاء header-top-row وإظهار header العادي في الشاشات الكبيرة */
+        @media (min-width: 769px) {
+            .header-top-row {
+                display: contents;
+            }
+
+            .header-bottom-row {
+                display: none;
+            }
+        }
+
+        /* Tab Navigation */
+        .tabs {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            overflow-x: auto;
+            padding: 10px 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .tab {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 16px;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 600;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text);
+            box-shadow: var(--shadow);
+            will-change: transform;
+            position: relative;
+            z-index: 10;
+        }
+
+        .tab:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .tab.active {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+        }
+
+        .tab i {
+            font-size: 1.3em;
+            transition: none;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            will-change: transform;
+            z-index: 1;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+            pointer-events: none;
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .card-icon-wrapper {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-icon-wrapper::after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+            pointer-events: none;
+        }
+
+        .card-icon {
+            font-size: 3em;
+            color: white;
+            position: relative;
+            z-index: 1;
+            transition: none;
+        }
+
+        .card-content {
+            padding: 25px;
+        }
+
+        .card-title {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 10px;
+        }
+
+        .card-description {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: nowrap;
+            align-items: center;
+        }
+
+        .action-btn {
+            background: linear-gradient(135deg, rgba(10, 186, 181, 0.1), rgba(10, 186, 181, 0.05));
+            border: 2px solid var(--primary);
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 600;
+            color: var(--primary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            will-change: transform;
+            position: relative;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .action-btn:hover {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            transform: translateX(-5px);
+        }
+
+        .action-btn i {
+            font-size: 1.1em;
+            transition: none;
+        }
+
+        /* WhatsApp badge-style icon */
+        .action-btn.whatsapp-btn {
+            padding-right: 20px;
+            justify-content: center;
+        }
+
+        /* Hide the main icon in whatsapp button */
+        .action-btn.whatsapp-btn > i.fa-whatsapp {
+            display: none;
+        }
+
+        /* Add badge icon */
+        .action-btn.whatsapp-btn::before {
+            content: '\f232';
+            font-family: 'Font Awesome 6 Brands';
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            font-size: 0.7em;
+            color: #25D366;
+            line-height: 1;
+            pointer-events: none;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 2;
+        }
+
+        .action-btn.whatsapp-btn:hover::before {
+            background: rgba(255, 255, 255, 1);
+            color: #128C7E;
+        }
+
+        body.ltr .action-btn.whatsapp-btn {
+            padding-left: 20px;
+            padding-right: 10px;
+        }
+
+        body.ltr .action-btn.whatsapp-btn::before {
+            left: 4px;
+            right: auto;
+        }
+
+        /* Hide normal icon spacing in whatsapp buttons */
+        .action-btn.whatsapp-btn span {
+            margin-right: 0;
+        }
+
+        /* Single button takes full width */
+        .card-actions .action-btn:only-child {
+            flex: 1 1 100%;
+        }
+
+        /* Info Section */
+        .info-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 30px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .info-title {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .info-title i {
+            color: var(--primary);
+            font-size: 1.2em;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .info-item {
+            background: linear-gradient(135deg, rgba(10, 186, 181, 0.05), rgba(10, 186, 181, 0.02));
+            padding: 20px;
+            border-radius: 16px;
+            border: 2px solid rgba(10, 186, 181, 0.2);
+            transition: all 0.3s ease;
+            will-change: transform;
+        }
+
+        .info-item:hover {
+            border-color: var(--primary);
+            transform: translateX(-5px);
+            box-shadow: 0 8px 16px rgba(10, 186, 181, 0.2);
+        }
+
+        .info-item-icon {
+            font-size: 2em;
+            color: var(--primary);
+            margin-bottom: 10px;
+            transition: none;
+        }
+
+        .info-item-text {
+            color: var(--text);
+            line-height: 1.6;
+            font-size: 0.95em;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 0.3s;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 24px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: slideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            padding: 30px;
+            color: white;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            will-change: transform;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .modal-title {
+            font-size: 2em;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .modal-list {
+            list-style: none;
+        }
+
+        .modal-list li {
+            padding: 15px;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, rgba(10, 186, 181, 0.05), rgba(10, 186, 181, 0.02));
+            border-radius: 12px;
+            border-right: 4px solid var(--primary);
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            transition: all 0.3s ease;
+            will-change: transform;
+        }
+
+        .modal-list li:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 4px 12px rgba(10, 186, 181, 0.2);
+        }
+
+        .modal-list li i {
+            color: var(--primary);
+            font-size: 1.3em;
+            margin-top: 3px;
+            transition: none;
+        }
+
+        /* Contact Cards in Modal */
+        .contact-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(11, 186, 181, 0.05), rgba(11, 186, 181, 0.02));
+            border-radius: 16px;
+            border: 2px solid rgba(11, 186, 181, 0.2);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            will-change: transform;
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .contact-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .contact-card:hover {
+            border-color: var(--primary);
+            transform: translateX(-8px);
+            box-shadow: 0 8px 25px rgba(11, 186, 181, 0.3);
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            color: white;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            will-change: transform;
+        }
+
+        .contact-card:hover .contact-icon {
+            transform: scale(1.05);
+            box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
+        }
+
+        .contact-info {
+            flex-grow: 1;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-info h4 {
+            font-size: 1.3em;
+            color: var(--text);
+            margin-bottom: 5px;
+            transition: color 0.3s ease;
+        }
+
+        .contact-card:hover .contact-info h4 {
+            color: white;
+        }
+
+        .contact-number {
+            font-size: 1.1em;
+            color: var(--text-light);
+            direction: ltr;
+            text-align: right;
+            transition: color 0.3s ease;
+        }
+
+        .contact-card:hover .contact-number {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .contact-arrow {
+            font-size: 1.5em;
+            color: var(--primary);
+            position: relative;
+            z-index: 1;
+            transition: color 0.3s ease, transform 0.3s ease;
+            will-change: transform;
+        }
+
+        .contact-card:hover .contact-arrow {
+            color: white;
+            transform: translateX(-5px);
+        }
+
+        body.ltr .contact-card:hover {
+            transform: translateX(8px);
+        }
+
+        body.ltr .contact-card:hover .contact-arrow {
+            transform: translateX(5px);
+        }
+
+        body.ltr .contact-number {
+            text-align: left;
+        }
+
+        /* Instructions Image Container */
+        .instructions-image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            background: linear-gradient(135deg, rgba(11, 186, 181, 0.05), rgba(11, 186, 181, 0.02));
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .instructions-img {
+            width: 100%;
+            height: auto;
+            max-height: 70vh;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            cursor: zoom-in;
+            transition: transform 0.3s ease;
+            will-change: transform;
+        }
+
+        .instructions-img:hover {
+            transform: scale(1.01);
+        }
+
+        /* Floating Action Button */
+        .fab {
+            position: fixed;
+            bottom: 30px;
+            left: -5px;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5em;
+            box-shadow: 0 8px 20px rgba(10, 186, 181, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 999;
+            will-change: transform;
+        }
+
+        .fab:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 30px rgba(10, 186, 181, 0.5);
+        }
+
+        .fab i {
+            transition: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                align-items: stretch;
+                justify-content: flex-start;
+                text-align: initial;
+                gap: 15px;
+                padding: 20px;
+            }
+
+            /* صف أول: الشعار + زر اللغة */
+            .header-top-row {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                position: relative;
+                z-index: 200;
+            }
+
+            .header-content {
+                flex-direction: row;
+                align-items: center;
+                gap: 12px;
+                width: 100%;
+            }
+
+            .logo {
+                width: 100px;
+                height: 50px;
+                border-radius: 10px;
+                padding: 8px;
+            }
+
+            /* إخفاء العنوان من header-content */
+            .header-content .header-text {
+                display: none;
+            }
+
+            /* العنوان والنص الفرعي في صف منفصل */
+            .header-bottom-row {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                width: 100%;
+                text-align: center;
+                position: relative;
+                z-index: 1;
+            }
+
+            .header-bottom-row h1 {
+                font-size: 1.3em;
+                line-height: 1.3;
+                margin: 0;
+            }
+
+            .header-bottom-row p {
+                font-size: 0.9em;
+                margin: 0;
+            }
+
+            .lang-btn {
+                padding: 10px 16px;
+                font-size: 0.9em;
+                min-width: 130px;
+                justify-content: center;
+            }
+
+            .lang-dropdown {
+                position: relative;
+            }
+
+            /* تصميم أفضل للقائمة في الموبايل */
+            .lang-menu {
+                min-width: 180px;
+            }
+
+
+
+            .celebration-img {
+                max-height: 100px;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tabs {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+            }
+
+            .fab {
+                bottom: 20px;
+                left: -5px;
+                width: 30px;
+                height: 30px;
+            }
+
+            .contact-card {
+                padding: 15px;
+                gap: 15px;
+            }
+
+            .contact-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5em;
+            }
+
+            .contact-info h4 {
+                font-size: 1.1em;
+            }
+
+            .contact-number {
+                font-size: 0.95em;
+            }
+
+            .card-actions {
+                flex-wrap: wrap;
+            }
+
+            .action-btn {
+                flex: 1 1 100%;
+                min-width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .action-btn {
+                padding: 8px 16px;
+                font-size: 0.9em;
+            }
+
+            .action-btn.whatsapp-btn {
+                padding-right: 18px;
+            }
+
+            .action-btn.whatsapp-btn::before {
+                width: 16px;
+                height: 16px;
+                font-size: 0.65em;
+                top: 3px;
+                right: 3px;
+            }
+
+            body.ltr .action-btn.whatsapp-btn {
+                padding-left: 18px;
+                padding-right: 8px;
+            }
+
+            body.ltr .action-btn.whatsapp-btn::before {
+                left: 3px;
+                right: auto;
+            }
+        }
+
+        /* Hidden class */
+        .hidden {
+            display: none !important;
+        }
+
+        /* LTR Support */
+        body.ltr {
+            direction: ltr;
+        }
+
+        body.ltr .modal-list li {
+            border-right: none;
+            border-left: 4px solid var(--primary);
+        }
+
+        body.ltr .action-btn:hover {
+            transform: translateX(5px);
+        }
+
+        body.ltr .info-item:hover {
+            transform: translateX(5px);
+        }
+
+        body.ltr .modal-list li:hover {
+            transform: translateX(5px);
+        }
+
+        body.ltr .fab {
+            left: auto;
+            right: 30px;
+        }
+
+        body.ltr .modal-close {
+            left: auto;
+            right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-top-row">
+                <div class="header-content">
+                    <div class="logo">
+                        <img src="img/logo.png" alt="CleanLife Logo" style="width: 100%; height: 100%; object-fit: contain;">
+                    </div>
+                    <div class="header-text">
+                        <h1 data-lang="main_title">روابط كلين لايف السريعة</h1>
+                        <p data-lang="subtitle">جميع الخدمات في مكان واحد</p>
+                    </div>
+                </div>
+                <div class="lang-dropdown" id="langDropdown">
+                    <button class="lang-btn" id="langBtn">
+                        <i class="fas fa-globe"></i>
+                        <span class="current-lang">العربية</span>
+                        <i class="fas fa-chevron-down dropdown-icon"></i>
+                    </button>
+                    <div class="lang-menu" id="langMenu">
+                        <div class="lang-option" data-lang-code="ar">
+                            <span class="lang-flag">🇸🇦</span>
+                            <span>العربية</span>
+                        </div>
+                        <div class="lang-option" data-lang-code="en">
+                            <span class="lang-flag">🇬🇧</span>
+                            <span>English</span>
+                        </div>
+                        <div class="lang-option" data-lang-code="fil">
+                            <span class="lang-flag">🇵🇭</span>
+                            <span>Filipino</span>
+                        </div>
+                        <div class="lang-option" data-lang-code="ur">
+                            <span class="lang-flag">🇵🇰</span>
+                            <span>اردو</span>
+                        </div>
+                        <div class="lang-option" data-lang-code="ne">
+                            <span class="lang-flag">🇳🇵</span>
+                            <span>नेपाली</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="header-bottom-row">
+                <h1 data-lang="main_title">روابط كلين لايف السريعة</h1>
+                <p data-lang="subtitle">جميع الخدمات في مكان واحد</p>
+            </div>
+        </header>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab active" data-tab="support">
+                <i class="fas fa-headset"></i>
+                <span data-lang="support_tab">الدعم والمساندة</span>
+            </button>
+            <button class="tab" data-tab="hr">
+                <i class="fas fa-users"></i>
+                <span data-lang="hr_tab">الموارد البشرية</span>
+            </button>
+            <button class="tab" data-tab="awareness">
+                <i class="fas fa-lightbulb"></i>
+                <span data-lang="awareness_tab">التوعية</span>
+            </button>
+        </div>
+
+        <!-- Support Cards -->
+        <div class="cards-grid" id="supportCards">
+            <div class="card">
+                <div class="card-icon-wrapper">
+                    <i class="fas fa-phone-volume card-icon"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title" data-lang="emergency_title">خدمة الطوارئ</h3>
+                    <p class="card-description" data-lang="emergency_desc">تواصل معنا مباشرة للحصول على المساعدة الفورية</p>
+                    <div class="card-actions">
+                        <a href="tel:0115103239" class="action-btn">
+                            <i class="fas fa-phone"></i>
+                            <span data-lang="emergency_call">الاتصال الثابت</span>
+                        </a>
+                        <a href="https://api.whatsapp.com/send/?phone=966555446183" class="action-btn ">
+                            <i class="fab fa-whatsapp"></i>
+                            <span data-lang="emergency_whatsapp">واتساب خالد</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon-wrapper" style="background: linear-gradient(135deg, #10b981, #059669);">
+                    <i class="fas fa-briefcase-medical card-icon"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title" data-lang="injury_title">إصابات العمل</h3>
+                    <p class="card-description" data-lang="injury_desc">الإبلاغ عن إصابات العمل والحصول على الدعم اللازم </p>
+                    <div class="card-actions">
+                        <a href="https://api.whatsapp.com/send/?phone=966555446183" class="action-btn  " style="border-color: #10b981; color: #10b981;">
+                            <i class="fab fa-whatsapp"></i>
+                            <span data-lang="report">إبلاغ حمزة</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon-wrapper" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+                    <i class="fas fa-clipboard-list card-icon"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title" data-lang="requests_title">طلبات الخدمة</h3>
+                    <p class="card-description" data-lang="requests_desc">تقديم الطلبات ومتابعة حالتها</p>
+                    <div class="card-actions">
+                        <a href="https://app.pipefy.com/public/form/gxd-gwOf" class="action-btn" style="border-color: #f59e0b; color: #f59e0b;">
+                            <i class="fas fa-external-link-alt"></i>
+                            <span data-lang="open_form">فتح النموذج</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" onclick="openModal('supportInfo')">
+                <div class="card-icon-wrapper" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">
+                    <i class="fas fa-info-circle card-icon"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title" data-lang="services_title">الخدمات المتاحة</h3>
+                    <p class="card-description" data-lang="services_desc">تعرف على جميع خدمات المساندة والدعم</p>
+                    <div class="card-actions">
+                        <button class="action-btn" style="border-color: #8b5cf6; color: #8b5cf6;">
+                            <i class="fas fa-arrow-left"></i>
+                            <span data-lang="view_more">عرض المزيد</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- HR Cards -->
+        <div class="cards-grid hidden" id="hrCards">
+            <div class="card" onclick="openModal('hrWhatsappModal')">
+                <div class="card-icon-wrapper">
+                    <i class="fas fa-user-tie card-icon"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title" data-lang="hr_contact_title">تواصل مع الموارد البشرية</h3>
+                    <p class="card-description" data-lang="hr_contact_desc">للاستفسارات والطلبات المتعلقة بالموارد البشرية - اختر مسؤول للتواصل</p>
+                    <div class="card-actions">
+                        <button class="action-btn  " style="pointer-events: none;">
+                            <i class="fab fa-whatsapp"></i>
+                            <span data-lang="choose_contact">اختر للتواصل</span>
+                        </button>
+                        <a href="https://app.pipefy.com/public/form/kujJhmH3" class="action-btn" onclick="event.stopPropagation();">
+                            <i class="fas fa-link"></i>
+                            <span>البايب</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon-wrapper" style="background: linear-gradient(135deg, #10b981, #059669);">
+                    <i class="fas fa-calendar-check card-icon"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title" data-lang="vacation_title">الإجازات والمستحقات</h3>
+                    <p class="card-description" data-lang="vacation_desc">تقديم طلبات الإجازات والاستعلام عن المستحقات</p>
+                    <div class="card-actions">
+                        <a href="https://app.pipefy.com/public/form/kujJhmH3" class="action-btn" style="border-color: #10b981; color: #10b981;">
+                            <i class="fas fa-file-alt"></i>
+                            <span data-lang="submit">تقديم طلب</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" onclick="openModal('hrInfo')">
+                <div class="card-icon-wrapper" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">
+                    <i class="fas fa-info-circle card-icon"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title" data-lang="hr_services_title">خدمات الموارد البشرية</h3>
+                    <p class="card-description" data-lang="hr_services_desc">تعرف على جميع الخدمات المتاحة</p>
+                    <div class="card-actions">
+                        <button class="action-btn" style="border-color: #8b5cf6; color: #8b5cf6;">
+                            <i class="fas fa-arrow-left"></i>
+                            <span data-lang="view_more">عرض المزيد</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Awareness Cards -->
+        <div class="cards-grid hidden" id="awarenessCards">
+            <div class="card" onclick="openModal('housingRules')">
+                <div class="card-icon-wrapper">
+                    <i class="fas fa-home card-icon"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title" data-lang="housing_title">ممنوعات السكن</h3>
+                    <p class="card-description" data-lang="housing_desc">القواعد والإرشادات للحفاظ على بيئة سكنية آمنة</p>
+                    <div class="card-actions">
+                        <button class="action-btn">
+                            <i class="fas fa-arrow-left"></i>
+                            <span data-lang="read_more">اقرأ المزيد</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" onclick="openModal('dressCode')">
+                <div class="card-icon-wrapper" style="background: linear-gradient(135deg, #10b981, #059669);">
+                    <i class="fas fa-tshirt card-icon"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title" data-lang="dress_title">تعليمات الزي</h3>
+                    <p class="card-description" data-lang="dress_desc">معايير الزي الرسمي وقواعد السلامة</p>
+                    <div class="card-actions">
+                        <button class="action-btn" style="border-color: #10b981; color: #10b981;">
+                            <i class="fas fa-arrow-left"></i>
+                            <span data-lang="read_more">اقرأ المزيد</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" onclick="openModal('instructionsModal')">
+                <div class="card-icon-wrapper" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+                    <i class="fas fa-file-image card-icon"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title" data-lang="instructions_title">التعليمات المصورة</h3>
+                    <p class="card-description" data-lang="instructions_desc">دليل مصور شامل بلغتك</p>
+                    <div class="card-actions">
+                        <button class="action-btn" style="border-color: #f59e0b; color: #f59e0b;">
+                            <i class="fas fa-arrow-left"></i>
+                            <span data-lang="view_instructions">عرض التعليمات</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal" id="supportInfo">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeModal('supportInfo')">×</button>
+                <h2 class="modal-title" data-lang="services_available">الخدمات المتاحة</h2>
+            </div>
+            <div class="modal-body">
+                <ul class="modal-list">
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <span data-lang="service_1">السلف المتعلقة بالحوادث المرورية</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <span data-lang="service_2">تفاويض المركبات</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <span data-lang="service_3">طلبات البايب المرفوعة</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <span data-lang="service_4">كافة الخدمات والاستفسارات الأخرى</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="hrInfo">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeModal('hrInfo')">×</button>
+                <h2 class="modal-title" data-lang="hr_services">خدمات الموارد البشرية</h2>
+            </div>
+            <div class="modal-body">
+                <ul class="modal-list">
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <span data-lang="hr_service_1">شؤون الموظفين</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <span data-lang="hr_service_2">الإجازات والمستحقات</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <span data-lang="hr_service_3">إصابات العمل</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <span data-lang="hr_service_4">كافة الخدمات والاستفسارات الأخرى</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="housingRules">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeModal('housingRules')">×</button>
+                <h2 class="modal-title" data-lang="housing_rules">ممنوعات السكن</h2>
+            </div>
+            <div class="modal-body">
+                <ul class="modal-list">
+                    <li><i class="fas fa-times-circle" style="color: #ef4444;"></i><span data-lang="housing_1">يمنع الأكل داخل الغرف</span></li>
+                    <li><i class="fas fa-times-circle" style="color: #ef4444;"></i><span data-lang="housing_2">يمنع رمي الأوساخ داخل السكن</span></li>
+                    <li><i class="fas fa-times-circle" style="color: #ef4444;"></i><span data-lang="housing_3">يمنع التدخين داخل السكن</span></li>
+                    <li><i class="fas fa-times-circle" style="color: #ef4444;"></i><span data-lang="housing_4">يمنع ترك الصحون غير نظيفة</span></li>
+                    <li><i class="fas fa-times-circle" style="color: #ef4444;"></i><span data-lang="housing_5">يمنع ترك الطعام مكشوفاً</span></li>
+                    <li><i class="fas fa-times-circle" style="color: #ef4444;"></i><span data-lang="housing_6">يجب تنظيف الصحون والطاولات</span></li>
+                    <li><i class="fas fa-times-circle" style="color: #ef4444;"></i><span data-lang="housing_7">يمنع إدخال الحيوانات</span></li>
+                    <li><i class="fas fa-times-circle" style="color: #ef4444;"></i><span data-lang="housing_8">يمنع إدخال الأدوات الحادة</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="dressCode">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeModal('dressCode')">×</button>
+                <h2 class="modal-title" data-lang="dress_code">تعليمات الزي</h2>
+            </div>
+            <div class="modal-body">
+                <ul class="modal-list">
+                    <li><i class="fas fa-check-circle"></i><span data-lang="dress_1">الزي الرسمي للعمل</span></li>
+                    <li><i class="fas fa-check-circle"></i><span data-lang="dress_2">نظافة وحسن مظهر الزي</span></li>
+                    <li><i class="fas fa-check-circle"></i><span data-lang="dress_3">ارتداء الأحذية المناسبة</span></li>
+                    <li><i class="fas fa-check-circle"></i><span data-lang="dress_4">الالتزام بقواعد السلامة</span></li>
+                    <li><i class="fas fa-check-circle"></i><span data-lang="dress_5">تسكير جميع الأزرار</span></li>
+                    <li><i class="fas fa-check-circle"></i><span data-lang="dress_6">ارتداء الكمامة المخصصة</span></li>
+                    <li><i class="fas fa-check-circle"></i><span data-lang="dress_7">ارتداء أغطية الأحذية والقفازات</span></li>
+                    <li><i class="fas fa-check-circle"></i><span data-lang="dress_8">عدم لبس السماعات</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- HR WhatsApp Modal -->
+    <div class="modal" id="hrWhatsappModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeModal('hrWhatsappModal')">×</button>
+                <h2 class="modal-title" data-lang="hr_whatsapp_title">اختر مسؤول الموارد البشرية</h2>
+            </div>
+            <div class="modal-body">
+                <div class="contact-cards">
+                    <a href="https://api.whatsapp.com/send/?phone=966531351903" class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h4 data-lang="ziyad_name">زياد</h4>
+                            <p class="contact-number">+966 53 135 1903</p>
+                        </div>
+                        <i class="fas fa-arrow-left contact-arrow"></i>
+                    </a>
+                    <a href="https://api.whatsapp.com/send/?phone=966555064582" class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h4 data-lang="abdullah_name">عبدالله</h4>
+                            <p class="contact-number">+966 55 506 4582</p>
+                        </div>
+                        <i class="fas fa-arrow-left contact-arrow"></i>
+                    </a>
+                    <a href="https://api.whatsapp.com/send/?phone=966556221219" class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h4 data-lang="saleh_name">صالح</h4>
+                            <p class="contact-number">+966 55 622 1219</p>
+                        </div>
+                        <i class="fas fa-arrow-left contact-arrow"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Instructions Modal -->
+    <div class="modal" id="instructionsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeModal('instructionsModal')">×</button>
+                <h2 class="modal-title" data-lang="instructions_guide">دليل التعليمات المصور</h2>
+            </div>
+            <div class="modal-body">
+                <div class="instructions-image-container">
+                    <img id="instructionsImage" src="img/Instructions/_عربي تعليمات_.png" alt="Instructions" class="instructions-img">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Action Button -->
+    <div class="fab" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Translations
+        const translations = {
+            ar: {
+                main_title: "روابط كلين لايف السريعة",
+                subtitle: "جميع الخدمات في مكان واحد",
+                lang_switcher: "English",
+                support_tab: "الدعم والمساندة",
+                hr_tab: "الموارد البشرية",
+                awareness_tab: "التوعية",
+                emergency_title: "خدمة الطوارئ",
+                emergency_desc: "تواصل معنا مباشرة للحصول على المساعدة الفورية",
+                emergency_call: "الاتصال الثابت",
+                emergency_whatsapp: "واتساب خالد",
+                injury_title: "إصابات العمل",
+                injury_desc: "الإبلاغ عن إصابات العمل والحصول على الدعم اللازم - حمزة",
+                choose_contact: "اختر للتواصل",
+                hr_whatsapp_title: "اختر مسؤول الموارد البشرية",
+                ziyad_name: "زياد",
+                abdullah_name: "عبدالله",
+                saleh_name: "صالح",
+                instructions_title: "التعليمات المصورة",
+                instructions_desc: "دليل مصور شامل بلغتك",
+                view_instructions: "عرض التعليمات",
+                instructions_guide: "دليل التعليمات المصور",
+                requests_title: "طلبات الخدمة",
+                requests_desc: "تقديم الطلبات ومتابعة حالتها",
+                services_title: "الخدمات المتاحة",
+                services_desc: "تعرف على جميع خدمات المساندة والدعم",
+                hr_contact_title: "تواصل مع الموارد البشرية",
+                hr_contact_desc: "للاستفسارات والطلبات المتعلقة بالموارد البشرية",
+                vacation_title: "الإجازات والمستحقات",
+                vacation_desc: "تقديم طلبات الإجازات والاستعلام عن المستحقات",
+                hr_services_title: "خدمات الموارد البشرية",
+                hr_services_desc: "تعرف على جميع الخدمات المتاحة",
+                housing_title: "ممنوعات السكن",
+                housing_desc: "القواعد والإرشادات للحفاظ على بيئة سكنية آمنة",
+                dress_title: "تعليمات الزي",
+                dress_desc: "معايير الزي الرسمي وقواعد السلامة",
+                call: "اتصال",
+                report: "إبلاغ",
+                open_form: "فتح النموذج",
+                view_more: "عرض المزيد",
+                submit: "تقديم طلب",
+                read_more: "اقرأ المزيد",
+                services_available: "الخدمات المتاحة",
+                service_1: "السلف المتعلقة بالحوادث المرورية",
+                service_2: "تفاويض المركبات",
+                service_3: "طلبات البايب المرفوعة",
+                service_4: "كافة الخدمات والاستفسارات الأخرى",
+                hr_services: "خدمات الموارد البشرية",
+                hr_service_1: "شؤون الموظفين",
+                hr_service_2: "الإجازات والمستحقات",
+                hr_service_3: "إصابات العمل",
+                hr_service_4: "كافة الخدمات والاستفسارات الأخرى",
+                housing_rules: "ممنوعات السكن",
+                housing_1: "يمنع الأكل داخل الغرف",
+                housing_2: "يمنع رمي الأوساخ داخل السكن",
+                housing_3: "يمنع التدخين داخل السكن",
+                housing_4: "يمنع ترك الصحون غير نظيفة",
+                housing_5: "يمنع ترك الطعام مكشوفاً",
+                housing_6: "يجب تنظيف الصحون والطاولات",
+                housing_7: "يمنع إدخال الحيوانات",
+                housing_8: "يمنع إدخال الأدوات الحادة",
+                dress_code: "تعليمات الزي",
+                dress_1: "الزي الرسمي للعمل",
+                dress_2: "نظافة وحسن مظهر الزي",
+                dress_3: "ارتداء الأحذية المناسبة",
+                dress_4: "الالتزام بقواعد السلامة",
+                dress_5: "تسكير جميع الأزرار",
+                dress_6: "ارتداء الكمامة المخصصة",
+                dress_7: "ارتداء أغطية الأحذية والقفازات",
+                dress_8: "عدم لبس السماعات"
+            },
+            en: {
+                main_title: "CleanLife Quick Links",
+                subtitle: "All services in one place",
+                lang_switcher: "Filipino",
+                support_tab: "Support",
+                hr_tab: "Human Resources",
+                awareness_tab: "Awareness",
+                emergency_title: "Emergency Service",
+                emergency_desc: "Contact us directly for immediate assistance",
+                emergency_call: "Landline Call",
+                emergency_whatsapp: "WhatsApp Khaled",
+                injury_title: "Work Injuries",
+                injury_desc: "Report work injuries and get necessary support - Hamza",
+                choose_contact: "Choose Contact",
+                hr_whatsapp_title: "Choose HR Representative",
+                ziyad_name: "Ziyad",
+                abdullah_name: "Abdullah",
+                saleh_name: "Saleh",
+                instructions_title: "Visual Instructions",
+                instructions_desc: "Complete illustrated guide in your language",
+                view_instructions: "View Instructions",
+                instructions_guide: "Visual Instructions Guide",
+                requests_title: "Service Requests",
+                requests_desc: "Submit requests and track their status",
+                services_title: "Available Services",
+                services_desc: "Learn about all support services",
+                hr_contact_title: "Contact HR",
+                hr_contact_desc: "For HR-related inquiries and requests",
+                vacation_title: "Vacations & Dues",
+                vacation_desc: "Submit vacation requests and check dues",
+                hr_services_title: "HR Services",
+                hr_services_desc: "Learn about all available services",
+                housing_title: "Housing Rules",
+                housing_desc: "Rules and guidelines for a safe living environment",
+                dress_title: "Dress Code",
+                dress_desc: "Official dress standards and safety rules",
+                call: "Call",
+                report: "Report",
+                open_form: "Open Form",
+                view_more: "View More",
+                submit: "Submit Request",
+                read_more: "Read More",
+                services_available: "Available Services",
+                service_1: "Advances related to traffic accidents",
+                service_2: "Vehicle authorizations",
+                service_3: "Submitted pipe requests",
+                service_4: "All other services and inquiries",
+                hr_services: "HR Services",
+                hr_service_1: "Personnel affairs",
+                hr_service_2: "Vacations and dues",
+                hr_service_3: "Work injuries",
+                hr_service_4: "All other services and inquiries",
+                housing_rules: "Housing Rules",
+                housing_1: "Eating inside rooms is prohibited",
+                housing_2: "Throwing trash inside is prohibited",
+                housing_3: "Smoking inside is prohibited",
+                housing_4: "Leaving dirty dishes is prohibited",
+                housing_5: "Leaving food uncovered is prohibited",
+                housing_6: "Must clean dishes and tables",
+                housing_7: "Bringing animals is prohibited",
+                housing_8: "Bringing sharp tools is prohibited",
+                dress_code: "Dress Code",
+                dress_1: "Official work attire",
+                dress_2: "Clean and neat uniform",
+                dress_3: "Wear appropriate shoes",
+                dress_4: "Follow safety rules",
+                dress_5: "Fasten all buttons",
+                dress_6: "Wear designated mask",
+                dress_7: "Wear shoe covers and gloves",
+                dress_8: "No headphones allowed"
+            },
+            fil: {
+                main_title: "Mabilis na Links ng CleanLife",
+                subtitle: "Lahat ng serbisyo sa isang lugar",
+                lang_switcher: "اردو",
+                support_tab: "Suporta",
+                hr_tab: "Human Resources",
+                awareness_tab: "Kamalayan",
+                emergency_title: "Serbisyong Pang-emergency",
+                emergency_desc: "Makipag-ugnayan sa amin para sa agarang tulong",
+                emergency_call: "Landline na Tawag",
+                emergency_whatsapp: "WhatsApp kay Khaled",
+                injury_title: "Pinsala sa Trabaho",
+                injury_desc: "Iulat ang pinsala sa trabaho at makakuha ng suporta - Hamza",
+                choose_contact: "Pumili ng Contact",
+                hr_whatsapp_title: "Pumili ng HR Representative",
+                ziyad_name: "Ziyad",
+                abdullah_name: "Abdullah",
+                saleh_name: "Saleh",
+                instructions_title: "Visual na Mga Tagubilin",
+                instructions_desc: "Kumpletong illustrated guide sa iyong wika",
+                view_instructions: "Tingnan ang Tagubilin",
+                instructions_guide: "Visual na Gabay sa Tagubilin",
+                requests_title: "Mga Kahilingan sa Serbisyo",
+                requests_desc: "Magsumite ng mga kahilingan at subaybayan ang katayuan",
+                services_title: "Available na Serbisyo",
+                services_desc: "Alamin ang lahat ng serbisyo sa suporta",
+                hr_contact_title: "Makipag-ugnayan sa HR",
+                hr_contact_desc: "Para sa mga katanungan at kahilingan sa HR",
+                vacation_title: "Bakasyon at Bayarin",
+                vacation_desc: "Magsumite ng kahilingan sa bakasyon",
+                hr_services_title: "Mga Serbisyo ng HR",
+                hr_services_desc: "Alamin ang lahat ng available na serbisyo",
+                housing_title: "Mga Patakaran sa Tirahan",
+                housing_desc: "Mga patakaran para sa ligtas na kapaligiran",
+                dress_title: "Dress Code",
+                dress_desc: "Mga pamantayan sa uniporme at kaligtasan",
+                call: "Tumawag",
+                report: "Iulat",
+                open_form: "Buksan ang Form",
+                view_more: "Tingnan pa",
+                submit: "Isumite",
+                read_more: "Magbasa pa",
+                services_available: "Available na Serbisyo",
+                service_1: "Mga advance para sa aksidente",
+                service_2: "Mga awtorisasyon ng sasakyan",
+                service_3: "Mga naisumiteng kahilingan",
+                service_4: "Lahat ng iba pang serbisyo",
+                hr_services: "Mga Serbisyo ng HR",
+                hr_service_1: "Usaping personal",
+                hr_service_2: "Bakasyon at bayarin",
+                hr_service_3: "Pinsala sa trabaho",
+                hr_service_4: "Lahat ng iba pang serbisyo",
+                housing_rules: "Mga Patakaran sa Tirahan",
+                housing_1: "Bawal kumain sa loob ng kwarto",
+                housing_2: "Bawal magtapon ng basura sa loob",
+                housing_3: "Bawal manigarilyo sa loob",
+                housing_4: "Bawal iwanan ang maruming pinggan",
+                housing_5: "Bawal iwanan ang pagkain nang walang takip",
+                housing_6: "Dapat linisin ang pinggan at mesa",
+                housing_7: "Bawal magpasok ng hayop",
+                housing_8: "Bawal magpasok ng matalim na kasangkapan",
+                dress_code: "Dress Code",
+                dress_1: "Opisyal na uniporme",
+                dress_2: "Malinis at maayos na uniporme",
+                dress_3: "Magsuot ng tamang sapatos",
+                dress_4: "Sundin ang mga patakaran sa kaligtasan",
+                dress_5: "Isara lahat ng butones",
+                dress_6: "Magsuot ng itinalagang maskara",
+                dress_7: "Magsuot ng takip sa sapatos at guwantes",
+                dress_8: "Bawal ang headphones"
+            },
+            ur: {
+                main_title: "کلین لائف کے فوری لنکس",
+                subtitle: "تمام خدمات ایک جگہ",
+                lang_switcher: "Nepali",
+                support_tab: "مدد",
+                hr_tab: "انسانی وسائل",
+                awareness_tab: "آگاہی",
+                emergency_title: "ایمرجنسی سروس",
+                emergency_desc: "فوری مدد کے لیے ہم سے رابطہ کریں",
+                emergency_call: "لینڈ لائن کال",
+                emergency_whatsapp: "واٹس ایپ خالد",
+                injury_title: "کام کی چوٹیں",
+                injury_desc: "کام کی چوٹوں کی اطلاع دیں اور ضروری مدد حاصل کریں - حمزہ",
+                choose_contact: "رابطہ منتخب کریں",
+                hr_whatsapp_title: "HR نمائندہ منتخب کریں",
+                ziyad_name: "زیاد",
+                abdullah_name: "عبداللہ",
+                saleh_name: "صالح",
+                instructions_title: "تصویری ہدایات",
+                instructions_desc: "آپ کی زبان میں مکمل گائیڈ",
+                view_instructions: "ہدایات دیکھیں",
+                instructions_guide: "تصویری ہدایات کی گائیڈ",
+                requests_title: "سروس کی درخواستیں",
+                requests_desc: "درخواستیں جمع کروائیں اور ان کی حیثیت جانیں",
+                services_title: "دستیاب خدمات",
+                services_desc: "تمام معاونت کی خدمات کے بارے میں جانیں",
+                hr_contact_title: "HR سے رابطہ کریں",
+                hr_contact_desc: "HR سے متعلق استفسارات اور درخواستوں کے لیے",
+                vacation_title: "چھٹیاں اور واجبات",
+                vacation_desc: "چھٹی کی درخواستیں جمع کروائیں",
+                hr_services_title: "HR کی خدمات",
+                hr_services_desc: "تمام دستیاب خدمات کے بارے میں جانیں",
+                housing_title: "رہائش کے اصول",
+                housing_desc: "محفوظ رہائشی ماحول کے لیے اصول",
+                dress_title: "لباس کے اصول",
+                dress_desc: "سرکاری لباس کے معیارات اور حفاظتی قوانین",
+                call: "کال کریں",
+                report: "رپورٹ کریں",
+                open_form: "فارم کھولیں",
+                view_more: "مزید دیکھیں",
+                submit: "درخواست جمع کروائیں",
+                read_more: "مزید پڑھیں",
+                services_available: "دستیاب خدمات",
+                service_1: "ٹریفک حادثات سے متعلق پیشگیاں",
+                service_2: "گاڑیوں کی اجازت",
+                service_3: "جمع شدہ پائپ درخواستیں",
+                service_4: "دیگر تمام خدمات اور استفسارات",
+                hr_services: "HR کی خدمات",
+                hr_service_1: "عملے کے امور",
+                hr_service_2: "چھٹیاں اور واجبات",
+                hr_service_3: "کام کی چوٹیں",
+                hr_service_4: "دیگر تمام خدمات",
+                housing_rules: "رہائش کے اصول",
+                housing_1: "کمروں میں کھانا منع ہے",
+                housing_2: "اندر کچرا پھینکنا منع ہے",
+                housing_3: "اندر سگریٹ نوشی منع ہے",
+                housing_4: "گندے برتن چھوڑنا منع ہے",
+                housing_5: "کھلا کھانا چھوڑنا منع ہے",
+                housing_6: "برتن اور میزیں صاف کرنی چاہیے",
+                housing_7: "جانور لانا منع ہے",
+                housing_8: "تیز دھار اوزار لانا منع ہے",
+                dress_code: "لباس کے اصول",
+                dress_1: "سرکاری کام کا لباس",
+                dress_2: "صاف اور اچھی یونیفارم",
+                dress_3: "مناسب جوتے پہنیں",
+                dress_4: "حفاظتی قوانین پر عمل کریں",
+                dress_5: "تمام بٹن بند کریں",
+                dress_6: "مخصوص ماسک پہنیں",
+                dress_7: "جوتوں کے کور اور دستانے پہنیں",
+                dress_8: "ہیڈ فون کی اجازت نہیں"
+            },
+            ne: {
+                main_title: "क्लीनलाइफ द्रुत लिंकहरू",
+                subtitle: "सबै सेवाहरू एकै ठाउँमा",
+                lang_switcher: "عربي",
+                support_tab: "समर्थन",
+                hr_tab: "मानव संसाधन",
+                awareness_tab: "चेतना",
+                emergency_title: "आपतकालीन सेवा",
+                emergency_desc: "तत्काल सहायताको लागि हामीलाई सम्पर्क गर्नुहोस्",
+                emergency_call: "ल्यान्डलाइन कल",
+                emergency_whatsapp: "व्हाट्सएप खालिद",
+                injury_title: "काममा चोट",
+                injury_desc: "काममा लागेको चोटको रिपोर्ट गर्नुहोस् - हमजा",
+                choose_contact: "सम्पर्क छान्नुहोस्",
+                hr_whatsapp_title: "HR प्रतिनिधि छान्नुहोस्",
+                ziyad_name: "जियाद",
+                abdullah_name: "अब्दुल्लाह",
+                saleh_name: "सालेह",
+                instructions_title: "दृश्य निर्देशनहरू",
+                instructions_desc: "तपाईंको भाषामा पूर्ण गाइड",
+                view_instructions: "निर्देशनहरू हेर्नुहोस्",
+                instructions_guide: "दृश्य निर्देशन गाइड",
+                requests_title: "सेवा अनुरोधहरू",
+                requests_desc: "अनुरोधहरू पेश गर्नुहोस् र स्थिति ट्र्याक गर्नुहोस्",
+                services_title: "उपलब्ध सेवाहरू",
+                services_desc: "सबै समर्थन सेवाहरूको बारेमा जान्नुहोस्",
+                hr_contact_title: "HR सँग सम्पर्क गर्नुहोस्",
+                hr_contact_desc: "HR सम्बन्धी सोधपुछ र अनुरोधहरूको लागि",
+                vacation_title: "बिदा र बकाया",
+                vacation_desc: "बिदाको अनुरोध पेश गर्नुहोस्",
+                hr_services_title: "HR सेवाहरू",
+                hr_services_desc: "सबै उपलब्ध सेवाहरूको बारेमा जान्नुहोस्",
+                housing_title: "आवास नियमहरू",
+                housing_desc: "सुरक्षित बस्ने वातावरणको लागि नियमहरू",
+                dress_title: "पहिरन नियम",
+                dress_desc: "आधिकारिक पहिरन मापदण्ड र सुरक्षा नियमहरू",
+                call: "कल गर्नुहोस्",
+                report: "रिपोर्ट गर्नुहोस्",
+                open_form: "फारम खोल्नुहोस्",
+                view_more: "थप हेर्नुहोस्",
+                submit: "अनुरोध पेश गर्नुहोस्",
+                read_more: "थप पढ्नुहोस्",
+                services_available: "उपलब्ध सेवाहरू",
+                service_1: "ट्राफिक दुर्घटनासँग सम्बन्धित अग्रिमहरू",
+                service_2: "सवारी साधन प्राधिकरणहरू",
+                service_3: "पेश गरिएका अनुरोधहरू",
+                service_4: "अन्य सबै सेवाहरू र सोधपुछहरू",
+                hr_services: "HR सेवाहरू",
+                hr_service_1: "कर्मचारी मामिलाहरू",
+                hr_service_2: "बिदा र बकाया",
+                hr_service_3: "काममा चोट",
+                hr_service_4: "अन्य सबै सेवाहरू",
+                housing_rules: "आवास नियमहरू",
+                housing_1: "कोठाभित्र खान निषेध छ",
+                housing_2: "भित्र फोहोर फाल्न निषेध छ",
+                housing_3: "भित्र धुम्रपान निषेध छ",
+                housing_4: "फोहोर भाँडा छोड्न निषेध छ",
+                housing_5: "खुला खाना छोड्न निषेध छ",
+                housing_6: "भाँडा र टेबल सफा गर्नुपर्छ",
+                housing_7: "जनावर ल्याउन निषेध छ",
+                housing_8: "धारिलो औजार ल्याउन निषेध छ",
+                dress_code: "पहिरन नियम",
+                dress_1: "आधिकारिक कार्य पोशाक",
+                dress_2: "सफा र राम्रो वर्दी",
+                dress_3: "उपयुक्त जुत्ता लगाउनुहोस्",
+                dress_4: "सुरक्षा नियमहरू पालना गर्नुहोस्",
+                dress_5: "सबै बटनहरू बन्द गर्नुहोस्",
+                dress_6: "निर्दिष्ट मास्क लगाउनुहोस्",
+                dress_7: "जुत्ता कभर र पन्जा लगाउनुहोस्",
+                dress_8: "हेडफोन अनुमति छैन"
+            }
+        };
+
+        let currentLang = 'ar';
+
+        // Instructions image mapping by language
+        const instructionsImages = {
+            ar: 'img/Instructions/_عربي تعليمات_.png',
+            en: 'img/Instructions/_english تعليمات_.png',
+            fil: 'img/Instructions/_تعليمات  فلبينيTagalog.png',
+            ur: 'img/Instructions/اردو – Urdu تعليمات.png',
+            ne: 'img/Instructions/Nepali.png'
+        };
+
+        // Set Language
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.body.className = lang === 'ar' || lang === 'ur' ? '' : 'ltr';
+            document.body.dir = lang === 'ar' || lang === 'ur' ? 'rtl' : 'ltr';
+            
+            document.querySelectorAll('[data-lang]').forEach(el => {
+                const key = el.getAttribute('data-lang');
+                if (translations[lang] && translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+
+            // Update instructions image based on language
+            const instructionsImg = document.getElementById('instructionsImage');
+            if (instructionsImg && instructionsImages[lang]) {
+                instructionsImg.src = instructionsImages[lang];
+            }
+        }
+
+        // Language names for button display
+        const langNames = {
+            ar: 'العربية',
+            en: 'English',
+            fil: 'Filipino',
+            ur: 'اردو',
+            ne: 'नेपाली'
+        };
+
+        // Language Dropdown Toggle
+        const langDropdown = document.getElementById('langDropdown');
+        const langBtn = document.getElementById('langBtn');
+        const langMenu = document.getElementById('langMenu');
+
+        langBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            
+            // Position the menu based on button position
+            const btnRect = langBtn.getBoundingClientRect();
+            langMenu.style.top = (btnRect.bottom + 10) + 'px';
+            
+            if (document.body.classList.contains('rtl')) {
+                langMenu.style.right = (window.innerWidth - btnRect.right) + 'px';
+                langMenu.style.left = 'auto';
+            } else {
+                langMenu.style.left = btnRect.left + 'px';
+                langMenu.style.right = 'auto';
+            }
+            
+            langDropdown.classList.toggle('active');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!langDropdown.contains(e.target)) {
+                langDropdown.classList.remove('active');
+            }
+        });
+
+        // Language Selection
+        document.querySelectorAll('.lang-option').forEach(option => {
+            option.addEventListener('click', () => {
+                const selectedLang = option.getAttribute('data-lang-code');
+                setLanguage(selectedLang);
+                
+                // Update button text
+                const currentLangSpan = document.querySelector('.current-lang');
+                currentLangSpan.textContent = langNames[selectedLang];
+                
+                // Update active state
+                document.querySelectorAll('.lang-option').forEach(opt => opt.classList.remove('active'));
+                option.classList.add('active');
+                
+                // Close dropdown
+                langDropdown.classList.remove('active');
+            });
+        });
+
+        // Set initial active language
+        document.querySelector(`.lang-option[data-lang-code="${currentLang}"]`).classList.add('active');
+
+        // Tab Switching
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                const target = tab.dataset.tab;
+                
+                // Update active tab
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                // Show corresponding cards
+                document.getElementById('supportCards').classList.add('hidden');
+                document.getElementById('hrCards').classList.add('hidden');
+                document.getElementById('awarenessCards').classList.add('hidden');
+                
+                document.getElementById(target + 'Cards').classList.remove('hidden');
+            });
+        });
+
+        // Modal Functions
+        function openModal(id) {
+            document.getElementById(id).classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal on overlay click
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+
+        // Scroll to top
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Show FAB on scroll
+        window.addEventListener('scroll', () => {
+            const fab = document.querySelector('.fab');
+            if (window.scrollY > 300) {
+                fab.style.display = 'flex';
+            } else {
+                fab.style.display = 'none';
+            }
+        });
+
+        // Initialize
+        setLanguage('ar');
+        document.querySelector('.fab').style.display = 'none';
+    </script>
+</body>
+</html>
