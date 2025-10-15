@@ -425,6 +425,32 @@
             line-height: 1.6;
         }
 
+        .card-info-list {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0 20px 0;
+        }
+
+        .card-info-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            color: var(--text);
+            margin-bottom: 10px;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+
+        .card-info-list li i {
+            font-size: 1.1em;
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+
+        .card-info-list li span {
+            flex: 1;
+        }
+
         .card-actions {
             display: flex;
             gap: 10px;
@@ -1148,15 +1174,18 @@
                 </div>
                 <div class="card-content">
                     <h3 class="card-title" data-lang="emergency_title">خدمة الطوارئ</h3>
-                    <p class="card-description" data-lang="emergency_desc">تواصل معنا مباشرة للحصول على المساعدة الفورية</p>
+                    <ul class="card-info-list" style="color: var(--primary);">
+                        <li><i class="fas fa-check-circle" style="color: var(--primary);"></i><span data-lang="emergency_service_1">السلف المتعلقة بالحوادث المرورية</span></li>
+                        <li><i class="fas fa-check-circle" style="color: var(--primary);"></i><span data-lang="emergency_service_2">تفاويض المركبات</span></li>
+                    </ul>
                     <div class="card-actions">
                         <a href="tel:0115103239" class="action-btn">
                             <i class="fas fa-phone"></i>
-                            <span data-lang="emergency_call">الاتصال الثابت</span>
+                            <span data-lang="emergency_call_time">الاتصال الثابت <small style="font-size: 0.65em; opacity: 0.7; margin-right: 3px;">(9ص - 4م)</small></span>
                         </a>
-                        <a href="https://api.whatsapp.com/send/?phone=966555446183" class="action-btn ">
+                        <a href="https://api.whatsapp.com/send/?phone=966555446183" class="action-btn whatsapp-btn">
                             <i class="fab fa-whatsapp"></i>
-                            <span data-lang="emergency_whatsapp">واتساب خالد</span>
+                            <span data-lang="emergency_whatsapp_time">واتساب خالد <small style="font-size: 0.65em; opacity: 0.7; margin-right: 3px;">(9ص - 4م)</small></span>
                         </a>
                     </div>
                 </div>
@@ -1168,11 +1197,14 @@
                 </div>
                 <div class="card-content">
                     <h3 class="card-title" data-lang="injury_title">إصابات العمل</h3>
-                    <p class="card-description" data-lang="injury_desc">الإبلاغ عن إصابات العمل والحصول على الدعم اللازم </p>
+                    <ul class="card-info-list" style="color: #10b981;">
+                        <li><i class="fas fa-check-circle" style="color: #10b981;"></i><span data-lang="injury_service_1">الإبلاغ عن إصابات وحوادث العمل</span></li>
+                        <li><i class="fas fa-check-circle" style="color: #10b981;"></i><span data-lang="injury_service_2">متابعة الحالات الطبية والعلاجية</span></li>
+                    </ul>
                     <div class="card-actions">
-                        <a href="https://api.whatsapp.com/send/?phone=966555446183" class="action-btn  " style="border-color: #10b981; color: #10b981;">
+                        <a href="https://api.whatsapp.com/send/?phone=966597757497" class="action-btn whatsapp-btn" style="border-color: #10b981; color: #10b981;">
                             <i class="fab fa-whatsapp"></i>
-                            <span data-lang="report">إبلاغ حمزة</span>
+                            <span data-lang="report_hamza">إبلاغ حمزة <small style="font-size: 0.65em; opacity: 0.7; margin-right: 3px;">(9ص - 4م)</small></span>
                         </a>
                     </div>
                 </div>
@@ -1183,51 +1215,42 @@
                     <i class="fas fa-clipboard-list card-icon"></i>
                 </div>
                 <div class="card-content">
-                    <h3 class="card-title" data-lang="requests_title">طلبات الخدمة</h3>
-                    <p class="card-description" data-lang="requests_desc">تقديم الطلبات ومتابعة حالتها</p>
+                    <h3 class="card-title" data-lang="pipefy_requests_title">طلبات البايب</h3>
+                    <ul class="card-info-list" style="color: #f59e0b;">
+                        <li><i class="fas fa-check-circle" style="color: #f59e0b;"></i><span data-lang="pipefy_service_1">طلبات دعم صيانة (سيارات، معدات، الخ)</span></li>
+                        <li><i class="fas fa-check-circle" style="color: #f59e0b;"></i><span data-lang="pipefy_service_2">طلبات دعم (الملابس، السكن، المستودع، الخ)</span></li>
+                    </ul>
                     <div class="card-actions">
                         <a href="https://app.pipefy.com/public/form/gxd-gwOf" class="action-btn" style="border-color: #f59e0b; color: #f59e0b;">
                             <i class="fas fa-external-link-alt"></i>
-                            <span data-lang="open_form">فتح النموذج</span>
+                            <span data-lang="open_pipefy_form">تقديم طلب <small style="font-size: 0.65em; opacity: 0.7; margin-right: 3px;">(24 ساعة)</small></span>
                         </a>
                     </div>
                 </div>
             </div>
 
-            <div class="card" onclick="openModal('supportInfo')">
-                <div class="card-icon-wrapper" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">
-                    <i class="fas fa-info-circle card-icon"></i>
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title" data-lang="services_title">الخدمات المتاحة</h3>
-                    <p class="card-description" data-lang="services_desc">تعرف على جميع خدمات المساندة والدعم</p>
-                    <div class="card-actions">
-                        <button class="action-btn" style="border-color: #8b5cf6; color: #8b5cf6;">
-                            <i class="fas fa-arrow-left"></i>
-                            <span data-lang="view_more">عرض المزيد</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <!-- HR Cards -->
         <div class="cards-grid hidden" id="hrCards">
             <div class="card" onclick="openModal('hrWhatsappModal')">
                 <div class="card-icon-wrapper">
-                    <i class="fas fa-user-tie card-icon"></i>
+                    <i class="fas fa-briefcase-medical card-icon"></i>
                 </div>
                 <div class="card-content">
-                    <h3 class="card-title" data-lang="hr_contact_title">تواصل مع الموارد البشرية</h3>
-                    <p class="card-description" data-lang="hr_contact_desc">للاستفسارات والطلبات المتعلقة بالموارد البشرية - اختر مسؤول للتواصل</p>
+                    <h3 class="card-title" data-lang="hr_injury_title">إصابات العمل</h3>
+                    <ul class="card-info-list" style="color: var(--primary);">
+                        <li><i class="fas fa-check-circle" style="color: var(--primary);"></i><span data-lang="hr_injury_service_1">الإبلاغ عن إصابات وحوادث العمل</span></li>
+                        <li><i class="fas fa-check-circle" style="color: var(--primary);"></i><span data-lang="hr_injury_service_2">متابعة الحالات الطبية والعلاجية</span></li>
+                    </ul>
                     <div class="card-actions">
-                        <button class="action-btn  " style="pointer-events: none;">
+                        <button class="action-btn whatsapp-btn" style="pointer-events: none;">
                             <i class="fab fa-whatsapp"></i>
-                            <span data-lang="choose_contact">اختر للتواصل</span>
+                            <span data-lang="choose_hr_contact">اختر للتواصل <small style="font-size: 0.65em; opacity: 0.7; margin-right: 3px;">(24 ساعة)</small></span>
                         </button>
-                        <a href="https://app.pipefy.com/public/form/kujJhmH3" class="action-btn" onclick="event.stopPropagation();">
-                            <i class="fas fa-link"></i>
-                            <span>البايب</span>
+                        <a href="tel:0115103257" class="action-btn" onclick="event.stopPropagation();">
+                            <i class="fas fa-phone"></i>
+                            <span data-lang="hr_call_time">الاتصال الثابت <small style="font-size: 0.65em; opacity: 0.7; margin-right: 3px;">(9ص - 4م)</small></span>
                         </a>
                     </div>
                 </div>
@@ -1235,40 +1258,36 @@
 
             <div class="card">
                 <div class="card-icon-wrapper" style="background: linear-gradient(135deg, #10b981, #059669);">
-                    <i class="fas fa-calendar-check card-icon"></i>
+                    <i class="fas fa-clipboard-list card-icon"></i>
                 </div>
                 <div class="card-content">
-                    <h3 class="card-title" data-lang="vacation_title">الإجازات والمستحقات</h3>
-                    <p class="card-description" data-lang="vacation_desc">تقديم طلبات الإجازات والاستعلام عن المستحقات</p>
+                    <h3 class="card-title" data-lang="hr_pipefy_title">طلبات البايب</h3>
+                    <ul class="card-info-list" style="color: #10b981;">
+                        <li><i class="fas fa-check-circle" style="color: #10b981;"></i><span data-lang="hr_pipefy_service_1">شؤون الموظفين</span></li>
+                        <li><i class="fas fa-check-circle" style="color: #10b981;"></i><span data-lang="hr_pipefy_service_2">الإجازات والمستحقات</span></li>
+                    </ul>
                     <div class="card-actions">
                         <a href="https://app.pipefy.com/public/form/kujJhmH3" class="action-btn" style="border-color: #10b981; color: #10b981;">
                             <i class="fas fa-file-alt"></i>
-                            <span data-lang="submit">تقديم طلب</span>
+                            <span data-lang="submit_pipefy_request">تقديم طلب <small style="font-size: 0.65em; opacity: 0.7; margin-right: 3px;">(24 ساعة)</small></span>
+                        </a>
+                        <a href="tel:0115103257" class="action-btn" style="border-color: #10b981; color: #10b981;">
+                            <i class="fas fa-phone"></i>
+                            <span data-lang="hr_pipefy_call">الاتصال الثابت <small style="font-size: 0.65em; opacity: 0.7; margin-right: 3px;">(9ص - 4م)</small></span>
+                        </a>
+                        <a href="https://api.whatsapp.com/send/?phone=966115103257" class="action-btn whatsapp-btn" style="border-color: #10b981; color: #10b981;">
+                            <i class="fab fa-whatsapp"></i>
+                            <span data-lang="hr_pipefy_whatsapp">تواصل الواتساب <small style="font-size: 0.65em; opacity: 0.7; margin-right: 3px;">(24 ساعة)</small></span>
                         </a>
                     </div>
                 </div>
             </div>
 
-            <div class="card" onclick="openModal('hrInfo')">
-                <div class="card-icon-wrapper" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">
-                    <i class="fas fa-info-circle card-icon"></i>
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title" data-lang="hr_services_title">خدمات الموارد البشرية</h3>
-                    <p class="card-description" data-lang="hr_services_desc">تعرف على جميع الخدمات المتاحة</p>
-                    <div class="card-actions">
-                        <button class="action-btn" style="border-color: #8b5cf6; color: #8b5cf6;">
-                            <i class="fas fa-arrow-left"></i>
-                            <span data-lang="view_more">عرض المزيد</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <!-- Awareness Cards -->
         <div class="cards-grid hidden" id="awarenessCards">
-            <div class="card" onclick="openModal('housingRules')">
+            <div class="card">
                 <div class="card-icon-wrapper">
                     <i class="fas fa-home card-icon"></i>
                 </div>
@@ -1276,15 +1295,23 @@
                     <h3 class="card-title" data-lang="housing_title">ممنوعات السكن</h3>
                     <p class="card-description" data-lang="housing_desc">القواعد والإرشادات للحفاظ على بيئة سكنية آمنة</p>
                     <div class="card-actions">
-                        <button class="action-btn">
+                        <button class="action-btn" onclick="openModal('housingRules')">
                             <i class="fas fa-arrow-left"></i>
                             <span data-lang="read_more">اقرأ المزيد</span>
+                        </button>
+                        <button class="action-btn" onclick="openModal('housingImageModal')">
+                            <i class="fas fa-image"></i>
+                            <span data-lang="housing_image">تعليمات السكن</span>
+                        </button>
+                        <button class="action-btn" onclick="openModal('kitchenImageModal')">
+                            <i class="fas fa-utensils"></i>
+                            <span data-lang="kitchen_image">تعليمات المطبخ</span>
                         </button>
                     </div>
                 </div>
             </div>
 
-            <div class="card" onclick="openModal('dressCode')">
+            <div class="card">
                 <div class="card-icon-wrapper" style="background: linear-gradient(135deg, #10b981, #059669);">
                     <i class="fas fa-tshirt card-icon"></i>
                 </div>
@@ -1292,56 +1319,60 @@
                     <h3 class="card-title" data-lang="dress_title">تعليمات الزي</h3>
                     <p class="card-description" data-lang="dress_desc">معايير الزي الرسمي وقواعد السلامة</p>
                     <div class="card-actions">
-                        <button class="action-btn" style="border-color: #10b981; color: #10b981;">
+                        <button class="action-btn" style="border-color: #10b981; color: #10b981;" onclick="openModal('dressCode')">
                             <i class="fas fa-arrow-left"></i>
                             <span data-lang="read_more">اقرأ المزيد</span>
+                        </button>
+                        <button class="action-btn" style="border-color: #10b981; color: #10b981;" onclick="openModal('instructionsModal')">
+                            <i class="fas fa-images"></i>
+                            <span data-lang="view_instructions">عرض الصور</span>
                         </button>
                     </div>
                 </div>
             </div>
 
-            <div class="card" onclick="openModal('instructionsModal')">
-                <div class="card-icon-wrapper" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
-                    <i class="fas fa-file-image card-icon"></i>
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title" data-lang="instructions_title">التعليمات المصورة</h3>
-                    <p class="card-description" data-lang="instructions_desc">دليل مصور شامل بلغتك</p>
-                    <div class="card-actions">
-                        <button class="action-btn" style="border-color: #f59e0b; color: #f59e0b;">
-                            <i class="fas fa-arrow-left"></i>
-                            <span data-lang="view_instructions">عرض التعليمات</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 
     <!-- Modals -->
-    <div class="modal" id="supportInfo">
+    <!-- Emergency Services Info Modal -->
+    <div class="modal" id="emergencyInfo">
         <div class="modal-content">
             <div class="modal-header">
-                <button class="modal-close" onclick="closeModal('supportInfo')">×</button>
-                <h2 class="modal-title" data-lang="services_available">الخدمات المتاحة</h2>
+                <button class="modal-close" onclick="closeModal('emergencyInfo')">×</button>
+                <h2 class="modal-title" data-lang="emergency_services_title">خدمة الطوارئ</h2>
             </div>
             <div class="modal-body">
                 <ul class="modal-list">
                     <li>
                         <i class="fas fa-check-circle"></i>
-                        <span data-lang="service_1">السلف المتعلقة بالحوادث المرورية</span>
+                        <span data-lang="emergency_service_1">السلف المتعلقة بالحوادث المرورية</span>
                     </li>
                     <li>
                         <i class="fas fa-check-circle"></i>
-                        <span data-lang="service_2">تفاويض المركبات</span>
+                        <span data-lang="emergency_service_2">تفاويض المركبات</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pipefy Requests Info Modal -->
+    <div class="modal" id="pipefyRequests">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeModal('pipefyRequests')">×</button>
+                <h2 class="modal-title" data-lang="pipefy_services_title">طلبات البايب</h2>
+            </div>
+            <div class="modal-body">
+                <ul class="modal-list">
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <span data-lang="pipefy_service_1">طلبات دعم صيانة (سيارات، معدات، الخ)</span>
                     </li>
                     <li>
                         <i class="fas fa-check-circle"></i>
-                        <span data-lang="service_3">طلبات البايب المرفوعة</span>
-                    </li>
-                    <li>
-                        <i class="fas fa-check-circle"></i>
-                        <span data-lang="service_4">كافة الخدمات والاستفسارات الأخرى</span>
+                        <span data-lang="pipefy_service_2">طلبات دعم (الملابس، السكن، المستودع، الخ)</span>
                     </li>
                 </ul>
             </div>
@@ -1463,6 +1494,36 @@
         </div>
     </div>
 
+    <!-- Housing Image Modal -->
+    <div class="modal" id="housingImageModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeModal('housingImageModal')">×</button>
+                <h2 class="modal-title" data-lang="housing_image_title">تعليمات السكن</h2>
+            </div>
+            <div class="modal-body">
+                <div class="instructions-image-container">
+                    <img src="img/13.png" alt="Housing Instructions" class="instructions-img">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Kitchen Image Modal -->
+    <div class="modal" id="kitchenImageModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeModal('kitchenImageModal')">×</button>
+                <h2 class="modal-title" data-lang="kitchen_image_title">تعليمات المطبخ</h2>
+            </div>
+            <div class="modal-body">
+                <div class="instructions-image-container">
+                    <img src="img/14.png" alt="Kitchen Instructions" class="instructions-img">
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Instructions Modal -->
     <div class="modal" id="instructionsModal">
         <div class="modal-content">
@@ -1495,11 +1556,12 @@
                 awareness_tab: "التوعية",
                 emergency_title: "خدمة الطوارئ",
                 emergency_desc: "تواصل معنا مباشرة للحصول على المساعدة الفورية",
-                emergency_call: "الاتصال الثابت",
-                emergency_whatsapp: "واتساب خالد",
+                emergency_call_time: "الاتصال الثابت",
+                emergency_whatsapp_time: "واتساب خالد",
                 injury_title: "إصابات العمل",
-                injury_desc: "الإبلاغ عن إصابات العمل والحصول على الدعم اللازم - حمزة",
-                choose_contact: "اختر للتواصل",
+                injury_service_1: "الإبلاغ عن إصابات وحوادث العمل",
+                injury_service_2: "متابعة الحالات الطبية والعلاجية",
+                report_hamza: "إبلاغ حمزة",
                 hr_whatsapp_title: "اختر مسؤول الموارد البشرية",
                 ziyad_name: "زياد",
                 abdullah_name: "عبدالله",
@@ -1508,31 +1570,38 @@
                 instructions_desc: "دليل مصور شامل بلغتك",
                 view_instructions: "عرض التعليمات",
                 instructions_guide: "دليل التعليمات المصور",
-                requests_title: "طلبات الخدمة",
-                requests_desc: "تقديم الطلبات ومتابعة حالتها",
-                services_title: "الخدمات المتاحة",
-                services_desc: "تعرف على جميع خدمات المساندة والدعم",
-                hr_contact_title: "تواصل مع الموارد البشرية",
-                hr_contact_desc: "للاستفسارات والطلبات المتعلقة بالموارد البشرية",
-                vacation_title: "الإجازات والمستحقات",
-                vacation_desc: "تقديم طلبات الإجازات والاستعلام عن المستحقات",
+                pipefy_requests_title: "طلبات البايب",
+                pipefy_requests_desc: "تقديم الطلبات ومتابعة حالتها",
+                open_pipefy_form: "تقديم طلب",
+                hr_injury_title: "إصابات العمل",
+                hr_injury_service_1: "الإبلاغ عن إصابات وحوادث العمل",
+                hr_injury_service_2: "متابعة الحالات الطبية والعلاجية",
+                choose_hr_contact: "اختر للتواصل",
+                hr_call_time: "الاتصال الثابت",
+                hr_pipefy_title: "طلبات البايب",
+                hr_pipefy_service_1: "شؤون الموظفين",
+                hr_pipefy_service_2: "الإجازات والمستحقات",
+                submit_pipefy_request: "تقديم طلب",
+                hr_pipefy_call: "الاتصال الثابت",
+                hr_pipefy_whatsapp: "تواصل الواتساب",
                 hr_services_title: "خدمات الموارد البشرية",
                 hr_services_desc: "تعرف على جميع الخدمات المتاحة",
                 housing_title: "ممنوعات السكن",
                 housing_desc: "القواعد والإرشادات للحفاظ على بيئة سكنية آمنة",
+                housing_image: "تعليمات السكن",
+                kitchen_image: "تعليمات المطبخ",
+                housing_image_title: "تعليمات السكن",
+                kitchen_image_title: "تعليمات المطبخ",
                 dress_title: "تعليمات الزي",
                 dress_desc: "معايير الزي الرسمي وقواعد السلامة",
-                call: "اتصال",
-                report: "إبلاغ",
-                open_form: "فتح النموذج",
                 view_more: "عرض المزيد",
-                submit: "تقديم طلب",
                 read_more: "اقرأ المزيد",
-                services_available: "الخدمات المتاحة",
-                service_1: "السلف المتعلقة بالحوادث المرورية",
-                service_2: "تفاويض المركبات",
-                service_3: "طلبات البايب المرفوعة",
-                service_4: "كافة الخدمات والاستفسارات الأخرى",
+                emergency_services_title: "خدمة الطوارئ",
+                emergency_service_1: "السلف المتعلقة بالحوادث المرورية",
+                emergency_service_2: "تفاويض المركبات",
+                pipefy_services_title: "طلبات البايب",
+                pipefy_service_1: "طلبات دعم صيانة (سيارات، معدات، الخ)",
+                pipefy_service_2: "طلبات دعم (الملابس، السكن، المستودع، الخ)",
                 hr_services: "خدمات الموارد البشرية",
                 hr_service_1: "شؤون الموظفين",
                 hr_service_2: "الإجازات والمستحقات",
@@ -1566,11 +1635,12 @@
                 awareness_tab: "Awareness",
                 emergency_title: "Emergency Service",
                 emergency_desc: "Contact us directly for immediate assistance",
-                emergency_call: "Landline Call",
-                emergency_whatsapp: "WhatsApp Khaled",
+                emergency_call_time: "Landline Call",
+                emergency_whatsapp_time: "WhatsApp Khaled",
                 injury_title: "Work Injuries",
-                injury_desc: "Report work injuries and get necessary support - Hamza",
-                choose_contact: "Choose Contact",
+                injury_service_1: "Report work injuries and accidents",
+                injury_service_2: "Follow up on medical and treatment cases",
+                report_hamza: "Report to Hamza",
                 hr_whatsapp_title: "Choose HR Representative",
                 ziyad_name: "Ziyad",
                 abdullah_name: "Abdullah",
@@ -1579,31 +1649,38 @@
                 instructions_desc: "Complete illustrated guide in your language",
                 view_instructions: "View Instructions",
                 instructions_guide: "Visual Instructions Guide",
-                requests_title: "Service Requests",
-                requests_desc: "Submit requests and track their status",
-                services_title: "Available Services",
-                services_desc: "Learn about all support services",
-                hr_contact_title: "Contact HR",
-                hr_contact_desc: "For HR-related inquiries and requests",
-                vacation_title: "Vacations & Dues",
-                vacation_desc: "Submit vacation requests and check dues",
+                pipefy_requests_title: "Pipefy Requests",
+                pipefy_requests_desc: "Submit requests and track their status",
+                open_pipefy_form: "Open Form",
+                hr_injury_title: "Work Injuries",
+                hr_injury_service_1: "Report work injuries and accidents",
+                hr_injury_service_2: "Follow up on medical and treatment cases",
+                choose_hr_contact: "Choose Contact",
+                hr_call_time: "Landline Call",
+                hr_pipefy_title: "Pipefy Requests",
+                hr_pipefy_service_1: "Employee Affairs",
+                hr_pipefy_service_2: "Vacations and Dues",
+                submit_pipefy_request: "Submit Request via Pipefy",
+                hr_pipefy_call: "Landline Call",
+                hr_pipefy_whatsapp: "Contact via WhatsApp",
                 hr_services_title: "HR Services",
                 hr_services_desc: "Learn about all available services",
                 housing_title: "Housing Rules",
                 housing_desc: "Rules and guidelines for a safe living environment",
+                housing_image: "Housing Instructions",
+                kitchen_image: "Kitchen Instructions",
+                housing_image_title: "Housing Instructions",
+                kitchen_image_title: "Kitchen Instructions",
                 dress_title: "Dress Code",
                 dress_desc: "Official dress standards and safety rules",
-                call: "Call",
-                report: "Report",
-                open_form: "Open Form",
                 view_more: "View More",
-                submit: "Submit Request",
                 read_more: "Read More",
-                services_available: "Available Services",
-                service_1: "Advances related to traffic accidents",
-                service_2: "Vehicle authorizations",
-                service_3: "Submitted pipe requests",
-                service_4: "All other services and inquiries",
+                emergency_services_title: "Emergency Service",
+                emergency_service_1: "Advances related to traffic accidents",
+                emergency_service_2: "Vehicle authorizations",
+                pipefy_services_title: "Pipefy Requests",
+                pipefy_service_1: "Maintenance support requests (vehicles, equipment, etc.)",
+                pipefy_service_2: "Support requests (clothing, housing, warehouse, etc.)",
                 hr_services: "HR Services",
                 hr_service_1: "Personnel affairs",
                 hr_service_2: "Vacations and dues",
@@ -1637,11 +1714,12 @@
                 awareness_tab: "Kamalayan",
                 emergency_title: "Serbisyong Pang-emergency",
                 emergency_desc: "Makipag-ugnayan sa amin para sa agarang tulong",
-                emergency_call: "Landline na Tawag",
-                emergency_whatsapp: "WhatsApp kay Khaled",
+                emergency_call_time: "Landline na Tawag",
+                emergency_whatsapp_time: "WhatsApp kay Khaled",
                 injury_title: "Pinsala sa Trabaho",
-                injury_desc: "Iulat ang pinsala sa trabaho at makakuha ng suporta - Hamza",
-                choose_contact: "Pumili ng Contact",
+                injury_service_1: "Mag-ulat ng pinsala at aksidente sa trabaho",
+                injury_service_2: "Sundan ang mga medikal na kaso",
+                report_hamza: "Iulat kay Hamza",
                 hr_whatsapp_title: "Pumili ng HR Representative",
                 ziyad_name: "Ziyad",
                 abdullah_name: "Abdullah",
@@ -1650,31 +1728,38 @@
                 instructions_desc: "Kumpletong illustrated guide sa iyong wika",
                 view_instructions: "Tingnan ang Tagubilin",
                 instructions_guide: "Visual na Gabay sa Tagubilin",
-                requests_title: "Mga Kahilingan sa Serbisyo",
-                requests_desc: "Magsumite ng mga kahilingan at subaybayan ang katayuan",
-                services_title: "Available na Serbisyo",
-                services_desc: "Alamin ang lahat ng serbisyo sa suporta",
-                hr_contact_title: "Makipag-ugnayan sa HR",
-                hr_contact_desc: "Para sa mga katanungan at kahilingan sa HR",
-                vacation_title: "Bakasyon at Bayarin",
-                vacation_desc: "Magsumite ng kahilingan sa bakasyon",
+                pipefy_requests_title: "Mga Kahilingan sa Pipefy",
+                pipefy_requests_desc: "Magsumite ng mga kahilingan at subaybayan ang katayuan",
+                open_pipefy_form: "Buksan ang Form",
+                hr_injury_title: "Pinsala sa Trabaho",
+                hr_injury_service_1: "Mag-ulat ng pinsala at aksidente sa trabaho",
+                hr_injury_service_2: "Sundan ang mga medikal na kaso",
+                choose_hr_contact: "Pumili ng Contact",
+                hr_call_time: "Landline na Tawag",
+                hr_pipefy_title: "Mga Kahilingan sa Pipefy",
+                hr_pipefy_service_1: "Usaping Empleyado",
+                hr_pipefy_service_2: "Bakasyon at Bayarin",
+                submit_pipefy_request: "Magsumite sa Pipefy",
+                hr_pipefy_call: "Landline na Tawag",
+                hr_pipefy_whatsapp: "Makipag-ugnayan sa WhatsApp",
                 hr_services_title: "Mga Serbisyo ng HR",
                 hr_services_desc: "Alamin ang lahat ng available na serbisyo",
                 housing_title: "Mga Patakaran sa Tirahan",
                 housing_desc: "Mga patakaran para sa ligtas na kapaligiran",
+                housing_image: "Tagubilin sa Tirahan",
+                kitchen_image: "Tagubilin sa Kusina",
+                housing_image_title: "Tagubilin sa Tirahan",
+                kitchen_image_title: "Tagubilin sa Kusina",
                 dress_title: "Dress Code",
                 dress_desc: "Mga pamantayan sa uniporme at kaligtasan",
-                call: "Tumawag",
-                report: "Iulat",
-                open_form: "Buksan ang Form",
                 view_more: "Tingnan pa",
-                submit: "Isumite",
                 read_more: "Magbasa pa",
-                services_available: "Available na Serbisyo",
-                service_1: "Mga advance para sa aksidente",
-                service_2: "Mga awtorisasyon ng sasakyan",
-                service_3: "Mga naisumiteng kahilingan",
-                service_4: "Lahat ng iba pang serbisyo",
+                emergency_services_title: "Serbisyong Pang-emergency",
+                emergency_service_1: "Mga advance para sa aksidente sa trapiko",
+                emergency_service_2: "Mga awtorisasyon ng sasakyan",
+                pipefy_services_title: "Mga Kahilingan sa Pipefy",
+                pipefy_service_1: "Mga kahilingan para sa maintenance (sasakyan, kagamitan, atbp.)",
+                pipefy_service_2: "Mga kahilingan para sa suporta (uniporme, tirahan, bodega, atbp.)",
                 hr_services: "Mga Serbisyo ng HR",
                 hr_service_1: "Usaping personal",
                 hr_service_2: "Bakasyon at bayarin",
@@ -1708,11 +1793,12 @@
                 awareness_tab: "آگاہی",
                 emergency_title: "ایمرجنسی سروس",
                 emergency_desc: "فوری مدد کے لیے ہم سے رابطہ کریں",
-                emergency_call: "لینڈ لائن کال",
-                emergency_whatsapp: "واٹس ایپ خالد",
+                emergency_call_time: "لینڈ لائن کال",
+                emergency_whatsapp_time: "واٹس ایپ خالد",
                 injury_title: "کام کی چوٹیں",
-                injury_desc: "کام کی چوٹوں کی اطلاع دیں اور ضروری مدد حاصل کریں - حمزہ",
-                choose_contact: "رابطہ منتخب کریں",
+                injury_service_1: "کام کی چوٹوں اور حادثات کی اطلاع دیں",
+                injury_service_2: "طبی اور علاج معالجے کی پیروی کریں",
+                report_hamza: "حمزہ کو رپورٹ کریں",
                 hr_whatsapp_title: "HR نمائندہ منتخب کریں",
                 ziyad_name: "زیاد",
                 abdullah_name: "عبداللہ",
@@ -1721,31 +1807,38 @@
                 instructions_desc: "آپ کی زبان میں مکمل گائیڈ",
                 view_instructions: "ہدایات دیکھیں",
                 instructions_guide: "تصویری ہدایات کی گائیڈ",
-                requests_title: "سروس کی درخواستیں",
-                requests_desc: "درخواستیں جمع کروائیں اور ان کی حیثیت جانیں",
-                services_title: "دستیاب خدمات",
-                services_desc: "تمام معاونت کی خدمات کے بارے میں جانیں",
-                hr_contact_title: "HR سے رابطہ کریں",
-                hr_contact_desc: "HR سے متعلق استفسارات اور درخواستوں کے لیے",
-                vacation_title: "چھٹیاں اور واجبات",
-                vacation_desc: "چھٹی کی درخواستیں جمع کروائیں",
+                pipefy_requests_title: "Pipefy درخواستیں",
+                pipefy_requests_desc: "درخواستیں جمع کروائیں اور ان کی حیثیت جانیں",
+                open_pipefy_form: "فارم کھولیں",
+                hr_injury_title: "کام کی چوٹیں",
+                hr_injury_service_1: "کام کی چوٹوں اور حادثات کی اطلاع دیں",
+                hr_injury_service_2: "طبی اور علاج معالجے کی پیروی کریں",
+                choose_hr_contact: "رابطہ منتخب کریں",
+                hr_call_time: "لینڈ لائن کال",
+                hr_pipefy_title: "Pipefy درخواستیں",
+                hr_pipefy_service_1: "ملازمین کے امور",
+                hr_pipefy_service_2: "چھٹیاں اور واجبات",
+                submit_pipefy_request: "Pipefy کے ذریعے درخواست جمع کروائیں",
+                hr_pipefy_call: "لینڈ لائن کال",
+                hr_pipefy_whatsapp: "واٹس ایپ سے رابطہ کریں",
                 hr_services_title: "HR کی خدمات",
                 hr_services_desc: "تمام دستیاب خدمات کے بارے میں جانیں",
                 housing_title: "رہائش کے اصول",
                 housing_desc: "محفوظ رہائشی ماحول کے لیے اصول",
+                housing_image: "رہائش کی ہدایات",
+                kitchen_image: "باورچی خانے کی ہدایات",
+                housing_image_title: "رہائش کی ہدایات",
+                kitchen_image_title: "باورچی خانے کی ہدایات",
                 dress_title: "لباس کے اصول",
                 dress_desc: "سرکاری لباس کے معیارات اور حفاظتی قوانین",
-                call: "کال کریں",
-                report: "رپورٹ کریں",
-                open_form: "فارم کھولیں",
                 view_more: "مزید دیکھیں",
-                submit: "درخواست جمع کروائیں",
                 read_more: "مزید پڑھیں",
-                services_available: "دستیاب خدمات",
-                service_1: "ٹریفک حادثات سے متعلق پیشگیاں",
-                service_2: "گاڑیوں کی اجازت",
-                service_3: "جمع شدہ پائپ درخواستیں",
-                service_4: "دیگر تمام خدمات اور استفسارات",
+                emergency_services_title: "ایمرجنسی سروس",
+                emergency_service_1: "ٹریفک حادثات سے متعلق پیشگیاں",
+                emergency_service_2: "گاڑیوں کی اجازت",
+                pipefy_services_title: "Pipefy درخواستیں",
+                pipefy_service_1: "مینٹیننس کی درخواستیں (گاڑیاں، آلات، وغیرہ)",
+                pipefy_service_2: "مدد کی درخواستیں (لباس، رہائش، گودام، وغیرہ)",
                 hr_services: "HR کی خدمات",
                 hr_service_1: "عملے کے امور",
                 hr_service_2: "چھٹیاں اور واجبات",
@@ -1779,11 +1872,12 @@
                 awareness_tab: "चेतना",
                 emergency_title: "आपतकालीन सेवा",
                 emergency_desc: "तत्काल सहायताको लागि हामीलाई सम्पर्क गर्नुहोस्",
-                emergency_call: "ल्यान्डलाइन कल",
-                emergency_whatsapp: "व्हाट्सएप खालिद",
+                emergency_call_time: "ल्यान्डलाइन कल",
+                emergency_whatsapp_time: "व्हाट्सएप खालिद",
                 injury_title: "काममा चोट",
-                injury_desc: "काममा लागेको चोटको रिपोर्ट गर्नुहोस् - हमजा",
-                choose_contact: "सम्पर्क छान्नुहोस्",
+                injury_service_1: "काममा चोट र दुर्घटनाको रिपोर्ट गर्नुहोस्",
+                injury_service_2: "चिकित्सा र उपचार केसहरूको पालना गर्नुहोस्",
+                report_hamza: "हमजालाई रिपोर्ट गर्नुहोस्",
                 hr_whatsapp_title: "HR प्रतिनिधि छान्नुहोस्",
                 ziyad_name: "जियाद",
                 abdullah_name: "अब्दुल्लाह",
@@ -1792,31 +1886,38 @@
                 instructions_desc: "तपाईंको भाषामा पूर्ण गाइड",
                 view_instructions: "निर्देशनहरू हेर्नुहोस्",
                 instructions_guide: "दृश्य निर्देशन गाइड",
-                requests_title: "सेवा अनुरोधहरू",
-                requests_desc: "अनुरोधहरू पेश गर्नुहोस् र स्थिति ट्र्याक गर्नुहोस्",
-                services_title: "उपलब्ध सेवाहरू",
-                services_desc: "सबै समर्थन सेवाहरूको बारेमा जान्नुहोस्",
-                hr_contact_title: "HR सँग सम्पर्क गर्नुहोस्",
-                hr_contact_desc: "HR सम्बन्धी सोधपुछ र अनुरोधहरूको लागि",
-                vacation_title: "बिदा र बकाया",
-                vacation_desc: "बिदाको अनुरोध पेश गर्नुहोस्",
+                pipefy_requests_title: "Pipefy अनुरोधहरू",
+                pipefy_requests_desc: "अनुरोधहरू पेश गर्नुहोस् र स्थिति ट्र्याक गर्नुहोस्",
+                open_pipefy_form: "फारम खोल्नुहोस्",
+                hr_injury_title: "काममा चोट",
+                hr_injury_service_1: "काममा चोट र दुर्घटनाको रिपोर्ट गर्नुहोस्",
+                hr_injury_service_2: "चिकित्सा र उपचार केसहरूको पालना गर्नुहोस्",
+                choose_hr_contact: "सम्पर्क छान्नुहोस्",
+                hr_call_time: "ल्यान्डलाइन कल",
+                hr_pipefy_title: "Pipefy अनुरोधहरू",
+                hr_pipefy_service_1: "कर्मचारी मामिलाहरू",
+                hr_pipefy_service_2: "बिदा र बकाया",
+                submit_pipefy_request: "Pipefy मार्फत अनुरोध पेश गर्नुहोस्",
+                hr_pipefy_call: "ल्यान्डलाइन कल",
+                hr_pipefy_whatsapp: "व्हाट्सएप मार्फत सम्पर्क गर्नुहोस्",
                 hr_services_title: "HR सेवाहरू",
                 hr_services_desc: "सबै उपलब्ध सेवाहरूको बारेमा जान्नुहोस्",
                 housing_title: "आवास नियमहरू",
                 housing_desc: "सुरक्षित बस्ने वातावरणको लागि नियमहरू",
+                housing_image: "आवास निर्देशनहरू",
+                kitchen_image: "भान्साको निर्देशनहरू",
+                housing_image_title: "आवास निर्देशनहरू",
+                kitchen_image_title: "भान्साको निर्देशनहरू",
                 dress_title: "पहिरन नियम",
                 dress_desc: "आधिकारिक पहिरन मापदण्ड र सुरक्षा नियमहरू",
-                call: "कल गर्नुहोस्",
-                report: "रिपोर्ट गर्नुहोस्",
-                open_form: "फारम खोल्नुहोस्",
                 view_more: "थप हेर्नुहोस्",
-                submit: "अनुरोध पेश गर्नुहोस्",
                 read_more: "थप पढ्नुहोस्",
-                services_available: "उपलब्ध सेवाहरू",
-                service_1: "ट्राफिक दुर्घटनासँग सम्बन्धित अग्रिमहरू",
-                service_2: "सवारी साधन प्राधिकरणहरू",
-                service_3: "पेश गरिएका अनुरोधहरू",
-                service_4: "अन्य सबै सेवाहरू र सोधपुछहरू",
+                emergency_services_title: "आपतकालीन सेवा",
+                emergency_service_1: "ट्राफिक दुर्घटनासँग सम्बन्धित अग्रिमहरू",
+                emergency_service_2: "सवारी साधन प्राधिकरणहरू",
+                pipefy_services_title: "Pipefy अनुरोधहरू",
+                pipefy_service_1: "मर्मत समर्थन अनुरोधहरू (सवारी साधन, उपकरण, आदि)",
+                pipefy_service_2: "समर्थन अनुरोधहरू (लुगा, आवास, गोदाम, आदि)",
                 hr_services: "HR सेवाहरू",
                 hr_service_1: "कर्मचारी मामिलाहरू",
                 hr_service_2: "बिदा र बकाया",
