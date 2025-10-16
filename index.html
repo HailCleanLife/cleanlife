@@ -478,6 +478,20 @@
             min-width: 0;
         }
 
+        .action-btn .btn-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            flex: 1;
+        }
+
+        .action-btn .btn-time {
+            font-size: 0.75em;
+            opacity: 0.8;
+            font-weight: 500;
+        }
+
         .action-btn:hover {
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
@@ -508,10 +522,10 @@
             top: 4px;
             right: 4px;
             font-size: 0.7em;
-            color: #25D366;
+            color: white;
             line-height: 1;
             pointer-events: none;
-            background: rgba(255, 255, 255, 0.95);
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             border-radius: 50%;
             width: 18px;
             height: 18px;
@@ -523,8 +537,8 @@
         }
 
         .action-btn.whatsapp-btn:hover::before {
-            background: rgba(255, 255, 255, 1);
-            color: #128C7E;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: white;
         }
 
         body.ltr .action-btn.whatsapp-btn {
@@ -1181,11 +1195,17 @@
                     <div class="card-actions">
                         <a href="tel:0115103239" class="action-btn">
                             <i class="fas fa-phone"></i>
-                            <span data-lang="emergency_call_time">الاتصال الثابت <small style="font-size: 0.65em; opacity: 0.7; margin-right: 3px;">(9ص - 4م)</small></span>
+                            <div class="btn-content">
+                                <span data-lang="emergency_call_btn">الاتصال الثابت</span>
+                                <span class="btn-time" data-lang="emergency_call_time">(9ص - 4م)</span>
+                            </div>
                         </a>
                         <a href="https://api.whatsapp.com/send/?phone=966555446183" class="action-btn whatsapp-btn">
                             <i class="fab fa-whatsapp"></i>
-                            <span data-lang="emergency_whatsapp_time">واتساب خالد <small style="font-size: 0.65em; opacity: 0.7; margin-right: 3px;">(9ص - 4م)</small></span>
+                            <div class="btn-content">
+                                <span data-lang="emergency_whatsapp_btn">واتساب خالد</span>
+                                <span class="btn-time" data-lang="emergency_whatsapp_time">(9ص - 4م)</span>
+                            </div>
                         </a>
                     </div>
                 </div>
@@ -1204,7 +1224,10 @@
                     <div class="card-actions">
                         <a href="https://api.whatsapp.com/send/?phone=966597757497" class="action-btn whatsapp-btn" style="border-color: #10b981; color: #10b981;">
                             <i class="fab fa-whatsapp"></i>
-                            <span data-lang="report_hamza">إبلاغ حمزة <small style="font-size: 0.65em; opacity: 0.7; margin-right: 3px;">(9ص - 4م)</small></span>
+                            <div class="btn-content">
+                                <span data-lang="report_hamza_btn">إبلاغ حمزة</span>
+                                <span class="btn-time" data-lang="report_hamza_time">(9ص - 4م)</span>
+                            </div>
                         </a>
                     </div>
                 </div>
@@ -1223,7 +1246,10 @@
                     <div class="card-actions">
                         <a href="https://app.pipefy.com/public/form/gxd-gwOf" class="action-btn" style="border-color: #f59e0b; color: #f59e0b;">
                             <i class="fas fa-external-link-alt"></i>
-                            <span data-lang="open_pipefy_form">تقديم طلب <small style="font-size: 0.65em; opacity: 0.7; margin-right: 3px;">(24 ساعة)</small></span>
+                            <div class="btn-content">
+                                <span data-lang="open_pipefy_btn">تقديم طلب</span>
+                                <span class="btn-time" data-lang="open_pipefy_time">(24 ساعة)</span>
+                            </div>
                         </a>
                     </div>
                 </div>
@@ -1246,11 +1272,17 @@
                     <div class="card-actions">
                         <button class="action-btn whatsapp-btn" style="pointer-events: none;">
                             <i class="fab fa-whatsapp"></i>
-                            <span data-lang="choose_hr_contact">اختر للتواصل <small style="font-size: 0.65em; opacity: 0.7; margin-right: 3px;">(24 ساعة)</small></span>
+                            <div class="btn-content">
+                                <span data-lang="choose_hr_contact_btn">اختر للتواصل</span>
+                                <span class="btn-time" data-lang="choose_hr_contact_time">(24 ساعة)</span>
+                            </div>
                         </button>
                         <a href="tel:0115103257" class="action-btn" onclick="event.stopPropagation();">
                             <i class="fas fa-phone"></i>
-                            <span data-lang="hr_call_time">الاتصال الثابت <small style="font-size: 0.65em; opacity: 0.7; margin-right: 3px;">(9ص - 4م)</small></span>
+                            <div class="btn-content">
+                                <span data-lang="hr_call_btn">الاتصال الثابت</span>
+                                <span class="btn-time" data-lang="hr_call_time">(9ص - 4م)</span>
+                            </div>
                         </a>
                     </div>
                 </div>
@@ -1269,15 +1301,24 @@
                     <div class="card-actions">
                         <a href="https://app.pipefy.com/public/form/kujJhmH3" class="action-btn" style="border-color: #10b981; color: #10b981;">
                             <i class="fas fa-file-alt"></i>
-                            <span data-lang="submit_pipefy_request">تقديم طلب <small style="font-size: 0.65em; opacity: 0.7; margin-right: 3px;">(24 ساعة)</small></span>
+                            <div class="btn-content">
+                                <span data-lang="submit_pipefy_btn">تقديم طلب</span>
+                                <span class="btn-time" data-lang="submit_pipefy_time">(24 ساعة)</span>
+                            </div>
                         </a>
                         <a href="tel:0115103257" class="action-btn" style="border-color: #10b981; color: #10b981;">
                             <i class="fas fa-phone"></i>
-                            <span data-lang="hr_pipefy_call">الاتصال الثابت <small style="font-size: 0.65em; opacity: 0.7; margin-right: 3px;">(9ص - 4م)</small></span>
+                            <div class="btn-content">
+                                <span data-lang="hr_pipefy_call_btn">الاتصال الثابت</span>
+                                <span class="btn-time" data-lang="hr_pipefy_call_time">(9ص - 4م)</span>
+                            </div>
                         </a>
                         <a href="https://api.whatsapp.com/send/?phone=966115103257" class="action-btn whatsapp-btn" style="border-color: #10b981; color: #10b981;">
                             <i class="fab fa-whatsapp"></i>
-                            <span data-lang="hr_pipefy_whatsapp">تواصل الواتساب <small style="font-size: 0.65em; opacity: 0.7; margin-right: 3px;">(24 ساعة)</small></span>
+                            <div class="btn-content">
+                                <span data-lang="hr_pipefy_whatsapp_btn">تواصل الواتساب</span>
+                                <span class="btn-time" data-lang="hr_pipefy_whatsapp_time">(24 ساعة)</span>
+                            </div>
                         </a>
                     </div>
                 </div>
@@ -1556,12 +1597,15 @@
                 awareness_tab: "التوعية",
                 emergency_title: "خدمة الطوارئ",
                 emergency_desc: "تواصل معنا مباشرة للحصول على المساعدة الفورية",
-                emergency_call_time: "الاتصال الثابت",
-                emergency_whatsapp_time: "واتساب خالد",
+                emergency_call_btn: "الاتصال الثابت",
+                emergency_call_time: "(9ص - 4م)",
+                emergency_whatsapp_btn: "واتساب خالد",
+                emergency_whatsapp_time: "(9ص - 4م)",
                 injury_title: "إصابات العمل",
                 injury_service_1: "الإبلاغ عن إصابات وحوادث العمل",
                 injury_service_2: "متابعة الحالات الطبية والعلاجية",
-                report_hamza: "إبلاغ حمزة",
+                report_hamza_btn: "إبلاغ حمزة",
+                report_hamza_time: "(9ص - 4م)",
                 hr_whatsapp_title: "اختر مسؤول الموارد البشرية",
                 ziyad_name: "زياد",
                 abdullah_name: "عبدالله",
@@ -1572,18 +1616,24 @@
                 instructions_guide: "دليل التعليمات المصور",
                 pipefy_requests_title: "طلبات البايب",
                 pipefy_requests_desc: "تقديم الطلبات ومتابعة حالتها",
-                open_pipefy_form: "تقديم طلب",
+                open_pipefy_btn: "تقديم طلب",
+                open_pipefy_time: "(24 ساعة)",
                 hr_injury_title: "إصابات العمل",
                 hr_injury_service_1: "الإبلاغ عن إصابات وحوادث العمل",
                 hr_injury_service_2: "متابعة الحالات الطبية والعلاجية",
-                choose_hr_contact: "اختر للتواصل",
-                hr_call_time: "الاتصال الثابت",
+                choose_hr_contact_btn: "اختر للتواصل",
+                choose_hr_contact_time: "(24 ساعة)",
+                hr_call_btn: "الاتصال الثابت",
+                hr_call_time: "(9ص - 4م)",
                 hr_pipefy_title: "طلبات البايب",
                 hr_pipefy_service_1: "شؤون الموظفين",
                 hr_pipefy_service_2: "الإجازات والمستحقات",
-                submit_pipefy_request: "تقديم طلب",
-                hr_pipefy_call: "الاتصال الثابت",
-                hr_pipefy_whatsapp: "تواصل الواتساب",
+                submit_pipefy_btn: "تقديم طلب",
+                submit_pipefy_time: "(24 ساعة)",
+                hr_pipefy_call_btn: "الاتصال الثابت",
+                hr_pipefy_call_time: "(9ص - 4م)",
+                hr_pipefy_whatsapp_btn: "تواصل الواتساب",
+                hr_pipefy_whatsapp_time: "(24 ساعة)",
                 hr_services_title: "خدمات الموارد البشرية",
                 hr_services_desc: "تعرف على جميع الخدمات المتاحة",
                 housing_title: "ممنوعات السكن",
@@ -1635,12 +1685,15 @@
                 awareness_tab: "Awareness",
                 emergency_title: "Emergency Service",
                 emergency_desc: "Contact us directly for immediate assistance",
-                emergency_call_time: "Landline Call",
-                emergency_whatsapp_time: "WhatsApp Khaled",
+                emergency_call_btn: "Landline Call",
+                emergency_call_time: "(9AM - 4PM)",
+                emergency_whatsapp_btn: "WhatsApp Khaled",
+                emergency_whatsapp_time: "(9AM - 4PM)",
                 injury_title: "Work Injuries",
                 injury_service_1: "Report work injuries and accidents",
                 injury_service_2: "Follow up on medical and treatment cases",
-                report_hamza: "Report to Hamza",
+                report_hamza_btn: "Report to Hamza",
+                report_hamza_time: "(9AM - 4PM)",
                 hr_whatsapp_title: "Choose HR Representative",
                 ziyad_name: "Ziyad",
                 abdullah_name: "Abdullah",
@@ -1651,18 +1704,24 @@
                 instructions_guide: "Visual Instructions Guide",
                 pipefy_requests_title: "Pipefy Requests",
                 pipefy_requests_desc: "Submit requests and track their status",
-                open_pipefy_form: "Open Form",
+                open_pipefy_btn: "Submit Request",
+                open_pipefy_time: "(24/7)",
                 hr_injury_title: "Work Injuries",
                 hr_injury_service_1: "Report work injuries and accidents",
                 hr_injury_service_2: "Follow up on medical and treatment cases",
-                choose_hr_contact: "Choose Contact",
-                hr_call_time: "Landline Call",
+                choose_hr_contact_btn: "Choose Contact",
+                choose_hr_contact_time: "(24/7)",
+                hr_call_btn: "Landline Call",
+                hr_call_time: "(9AM - 4PM)",
                 hr_pipefy_title: "Pipefy Requests",
                 hr_pipefy_service_1: "Employee Affairs",
                 hr_pipefy_service_2: "Vacations and Dues",
-                submit_pipefy_request: "Submit Request via Pipefy",
-                hr_pipefy_call: "Landline Call",
-                hr_pipefy_whatsapp: "Contact via WhatsApp",
+                submit_pipefy_btn: "Submit Request",
+                submit_pipefy_time: "(24/7)",
+                hr_pipefy_call_btn: "Landline Call",
+                hr_pipefy_call_time: "(9AM - 4PM)",
+                hr_pipefy_whatsapp_btn: "Contact via WhatsApp",
+                hr_pipefy_whatsapp_time: "(24/7)",
                 hr_services_title: "HR Services",
                 hr_services_desc: "Learn about all available services",
                 housing_title: "Housing Rules",
@@ -1714,12 +1773,15 @@
                 awareness_tab: "Kamalayan",
                 emergency_title: "Serbisyong Pang-emergency",
                 emergency_desc: "Makipag-ugnayan sa amin para sa agarang tulong",
-                emergency_call_time: "Landline na Tawag",
-                emergency_whatsapp_time: "WhatsApp kay Khaled",
+                emergency_call_btn: "Landline na Tawag",
+                emergency_call_time: "(9AM - 4PM)",
+                emergency_whatsapp_btn: "WhatsApp kay Khaled",
+                emergency_whatsapp_time: "(9AM - 4PM)",
                 injury_title: "Pinsala sa Trabaho",
                 injury_service_1: "Mag-ulat ng pinsala at aksidente sa trabaho",
                 injury_service_2: "Sundan ang mga medikal na kaso",
-                report_hamza: "Iulat kay Hamza",
+                report_hamza_btn: "Iulat kay Hamza",
+                report_hamza_time: "(9AM - 4PM)",
                 hr_whatsapp_title: "Pumili ng HR Representative",
                 ziyad_name: "Ziyad",
                 abdullah_name: "Abdullah",
@@ -1730,18 +1792,24 @@
                 instructions_guide: "Visual na Gabay sa Tagubilin",
                 pipefy_requests_title: "Mga Kahilingan sa Pipefy",
                 pipefy_requests_desc: "Magsumite ng mga kahilingan at subaybayan ang katayuan",
-                open_pipefy_form: "Buksan ang Form",
+                open_pipefy_btn: "Magsumite ng Kahilingan",
+                open_pipefy_time: "(24/7)",
                 hr_injury_title: "Pinsala sa Trabaho",
                 hr_injury_service_1: "Mag-ulat ng pinsala at aksidente sa trabaho",
                 hr_injury_service_2: "Sundan ang mga medikal na kaso",
-                choose_hr_contact: "Pumili ng Contact",
-                hr_call_time: "Landline na Tawag",
+                choose_hr_contact_btn: "Pumili ng Contact",
+                choose_hr_contact_time: "(24/7)",
+                hr_call_btn: "Landline na Tawag",
+                hr_call_time: "(9AM - 4PM)",
                 hr_pipefy_title: "Mga Kahilingan sa Pipefy",
                 hr_pipefy_service_1: "Usaping Empleyado",
                 hr_pipefy_service_2: "Bakasyon at Bayarin",
-                submit_pipefy_request: "Magsumite sa Pipefy",
-                hr_pipefy_call: "Landline na Tawag",
-                hr_pipefy_whatsapp: "Makipag-ugnayan sa WhatsApp",
+                submit_pipefy_btn: "Magsumite ng Kahilingan",
+                submit_pipefy_time: "(24/7)",
+                hr_pipefy_call_btn: "Landline na Tawag",
+                hr_pipefy_call_time: "(9AM - 4PM)",
+                hr_pipefy_whatsapp_btn: "Makipag-ugnayan sa WhatsApp",
+                hr_pipefy_whatsapp_time: "(24/7)",
                 hr_services_title: "Mga Serbisyo ng HR",
                 hr_services_desc: "Alamin ang lahat ng available na serbisyo",
                 housing_title: "Mga Patakaran sa Tirahan",
@@ -1793,12 +1861,15 @@
                 awareness_tab: "آگاہی",
                 emergency_title: "ایمرجنسی سروس",
                 emergency_desc: "فوری مدد کے لیے ہم سے رابطہ کریں",
-                emergency_call_time: "لینڈ لائن کال",
-                emergency_whatsapp_time: "واٹس ایپ خالد",
+                emergency_call_btn: "لینڈ لائن کال",
+                emergency_call_time: "(9 صبح - 4 شام)",
+                emergency_whatsapp_btn: "واٹس ایپ خالد",
+                emergency_whatsapp_time: "(9 صبح - 4 شام)",
                 injury_title: "کام کی چوٹیں",
                 injury_service_1: "کام کی چوٹوں اور حادثات کی اطلاع دیں",
                 injury_service_2: "طبی اور علاج معالجے کی پیروی کریں",
-                report_hamza: "حمزہ کو رپورٹ کریں",
+                report_hamza_btn: "حمزہ کو رپورٹ کریں",
+                report_hamza_time: "(9 صبح - 4 شام)",
                 hr_whatsapp_title: "HR نمائندہ منتخب کریں",
                 ziyad_name: "زیاد",
                 abdullah_name: "عبداللہ",
@@ -1809,18 +1880,24 @@
                 instructions_guide: "تصویری ہدایات کی گائیڈ",
                 pipefy_requests_title: "Pipefy درخواستیں",
                 pipefy_requests_desc: "درخواستیں جمع کروائیں اور ان کی حیثیت جانیں",
-                open_pipefy_form: "فارم کھولیں",
+                open_pipefy_btn: "درخواست جمع کروائیں",
+                open_pipefy_time: "(24 گھنٹے)",
                 hr_injury_title: "کام کی چوٹیں",
                 hr_injury_service_1: "کام کی چوٹوں اور حادثات کی اطلاع دیں",
                 hr_injury_service_2: "طبی اور علاج معالجے کی پیروی کریں",
-                choose_hr_contact: "رابطہ منتخب کریں",
-                hr_call_time: "لینڈ لائن کال",
+                choose_hr_contact_btn: "رابطہ منتخب کریں",
+                choose_hr_contact_time: "(24 گھنٹے)",
+                hr_call_btn: "لینڈ لائن کال",
+                hr_call_time: "(9 صبح - 4 شام)",
                 hr_pipefy_title: "Pipefy درخواستیں",
                 hr_pipefy_service_1: "ملازمین کے امور",
                 hr_pipefy_service_2: "چھٹیاں اور واجبات",
-                submit_pipefy_request: "Pipefy کے ذریعے درخواست جمع کروائیں",
-                hr_pipefy_call: "لینڈ لائن کال",
-                hr_pipefy_whatsapp: "واٹس ایپ سے رابطہ کریں",
+                submit_pipefy_btn: "درخواست جمع کروائیں",
+                submit_pipefy_time: "(24 گھنٹے)",
+                hr_pipefy_call_btn: "لینڈ لائن کال",
+                hr_pipefy_call_time: "(9 صبح - 4 شام)",
+                hr_pipefy_whatsapp_btn: "واٹس ایپ سے رابطہ کریں",
+                hr_pipefy_whatsapp_time: "(24 گھنٹے)",
                 hr_services_title: "HR کی خدمات",
                 hr_services_desc: "تمام دستیاب خدمات کے بارے میں جانیں",
                 housing_title: "رہائش کے اصول",
@@ -1872,12 +1949,15 @@
                 awareness_tab: "चेतना",
                 emergency_title: "आपतकालीन सेवा",
                 emergency_desc: "तत्काल सहायताको लागि हामीलाई सम्पर्क गर्नुहोस्",
-                emergency_call_time: "ल्यान्डलाइन कल",
-                emergency_whatsapp_time: "व्हाट्सएप खालिद",
+                emergency_call_btn: "ल्यान्डलाइन कल",
+                emergency_call_time: "(9AM - 4PM)",
+                emergency_whatsapp_btn: "व्हाट्सएप खालिद",
+                emergency_whatsapp_time: "(9AM - 4PM)",
                 injury_title: "काममा चोट",
                 injury_service_1: "काममा चोट र दुर्घटनाको रिपोर्ट गर्नुहोस्",
                 injury_service_2: "चिकित्सा र उपचार केसहरूको पालना गर्नुहोस्",
-                report_hamza: "हमजालाई रिपोर्ट गर्नुहोस्",
+                report_hamza_btn: "हमजालाई रिपोर्ट गर्नुहोस्",
+                report_hamza_time: "(9AM - 4PM)",
                 hr_whatsapp_title: "HR प्रतिनिधि छान्नुहोस्",
                 ziyad_name: "जियाद",
                 abdullah_name: "अब्दुल्लाह",
@@ -1888,18 +1968,24 @@
                 instructions_guide: "दृश्य निर्देशन गाइड",
                 pipefy_requests_title: "Pipefy अनुरोधहरू",
                 pipefy_requests_desc: "अनुरोधहरू पेश गर्नुहोस् र स्थिति ट्र्याक गर्नुहोस्",
-                open_pipefy_form: "फारम खोल्नुहोस्",
+                open_pipefy_btn: "अनुरोध पेश गर्नुहोस्",
+                open_pipefy_time: "(24/7)",
                 hr_injury_title: "काममा चोट",
                 hr_injury_service_1: "काममा चोट र दुर्घटनाको रिपोर्ट गर्नुहोस्",
                 hr_injury_service_2: "चिकित्सा र उपचार केसहरूको पालना गर्नुहोस्",
-                choose_hr_contact: "सम्पर्क छान्नुहोस्",
-                hr_call_time: "ल्यान्डलाइन कल",
+                choose_hr_contact_btn: "सम्पर्क छान्नुहोस्",
+                choose_hr_contact_time: "(24/7)",
+                hr_call_btn: "ल्यान्डलाइन कल",
+                hr_call_time: "(9AM - 4PM)",
                 hr_pipefy_title: "Pipefy अनुरोधहरू",
                 hr_pipefy_service_1: "कर्मचारी मामिलाहरू",
                 hr_pipefy_service_2: "बिदा र बकाया",
-                submit_pipefy_request: "Pipefy मार्फत अनुरोध पेश गर्नुहोस्",
-                hr_pipefy_call: "ल्यान्डलाइन कल",
-                hr_pipefy_whatsapp: "व्हाट्सएप मार्फत सम्पर्क गर्नुहोस्",
+                submit_pipefy_btn: "अनुरोध पेश गर्नुहोस्",
+                submit_pipefy_time: "(24/7)",
+                hr_pipefy_call_btn: "ल्यान्डलाइन कल",
+                hr_pipefy_call_time: "(9AM - 4PM)",
+                hr_pipefy_whatsapp_btn: "व्हाट्सएप मार्फत सम्पर्क गर्नुहोस्",
+                hr_pipefy_whatsapp_time: "(24/7)",
                 hr_services_title: "HR सेवाहरू",
                 hr_services_desc: "सबै उपलब्ध सेवाहरूको बारेमा जान्नुहोस्",
                 housing_title: "आवास नियमहरू",
@@ -1964,7 +2050,7 @@
             document.querySelectorAll('[data-lang]').forEach(el => {
                 const key = el.getAttribute('data-lang');
                 if (translations[lang] && translations[lang][key]) {
-                    el.textContent = translations[lang][key];
+                    el.innerHTML = translations[lang][key];
                 }
             });
 
